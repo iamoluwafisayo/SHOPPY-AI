@@ -29,7 +29,7 @@ To get started with Shoppy AI, follow these steps:
 We welcome contributions from the community to help improve Shoppy AI. If you'd like to contribute, please follow these guidelines:
 
 - Fork the repository and create your branch (`git checkout -b feature/your-feature`)
-- Commit your changes (`git commit -am 'Add your feature'`)
+- Commit your changes (`git commit -m 'new changes'`)
 - Push to the branch (`git push origin feature/your-feature`)
 - Create a new Pull Request
 
