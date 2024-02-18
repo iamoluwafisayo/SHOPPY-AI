@@ -14,7 +14,7 @@ import { useTheme } from "@mui/material/styles";
 
 const pages = ["Home", "Services", "Pricing", "About Us", "Contact Us"];
 
-function ResponsiveAppBar() {
+function ResponsiveNavBar() {
   const theme = useTheme();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -212,4 +212,4 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+export default ResponsiveNavBar;
