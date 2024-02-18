@@ -1,20 +1,15 @@
 import React from "react";
-import { useTheme } from "@mui/material/styles";
-import { Typography } from "@mui/material";
-import ResponsiveAppBar from "./components/common/navbar";
+import ResponsiveNavBar from "./components/common/navbar";
+import Footer from "./components/common/footer";
+import LandingPage from "./pages/LandingPage";
 
 const App = () => {
-  const theme = useTheme();
   return (
     <React.Fragment>
-      <ResponsiveAppBar />
-      <Typography
-        variant="h1"
-        component="h2"
-        sx={{ color: theme.palette.red.normal }}
-      >
-        Hello World!
-      </Typography>
+      <ResponsiveNavBar />
+      {/* body */}
+      <LandingPage />
+      <Footer/>
     </React.Fragment>
   );
 };
