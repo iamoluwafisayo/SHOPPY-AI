@@ -24,12 +24,13 @@ export const getDesignTokens = (mode) => ({
       green: "#22c38f",
     },
     background: {
-      default: "#F4F7FE",
+      default: "#fff",
       paper: "#fff",
     },
     text: {
       primary: "#5f6470",
       secondary: grey[700],
+      white: "#fff",
     },
     divider: "rgba(129, 139, 156, 0.1)",
     chatBox: "#dfe5f1",
