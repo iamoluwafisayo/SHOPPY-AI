@@ -26,7 +26,7 @@ function ResponsiveNavBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Container
         maxWidth="xl"
         sx={{ background: theme.palette.background.paper }}
