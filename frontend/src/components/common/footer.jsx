@@ -16,7 +16,9 @@ const Footer = () => {
       sx={{
         background: theme.palette.background.paper,
         p: 6,
+        position:"relative"
       }}
+      
     >
       <Container maxWidth="lg">
         <Grid container spacing={6} justifyContent="space-evenly">
