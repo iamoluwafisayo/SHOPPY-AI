@@ -26,11 +26,11 @@ function ResponsiveNavBar() {
   };
 
   return (
-    <AppBar position="fixed">
-      <Container
-        maxWidth="xl"
-        sx={{ background: theme.palette.background.paper }}
-      >
+    <AppBar
+      position="fixed"
+      sx={{ background: theme.palette.background.paper }}
+    >
+      <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <AdbIcon
