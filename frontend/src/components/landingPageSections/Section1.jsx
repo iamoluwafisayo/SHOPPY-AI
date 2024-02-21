@@ -64,7 +64,6 @@ const Section1 = () => {
           component="img"
           image="/images/img1.png"
           alt="Image"
-          style={{ width: "fixed", height: "552.68px" }}
         />
       </Grid>
     </Grid>
