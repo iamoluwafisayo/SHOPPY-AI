@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import { Facebook, Instagram, Twitter } from "@mui/icons-material";
-import { Box, List, ListItem, ListItemText } from "@mui/material";
+import { Box, Divider, List, ListItem, ListItemText } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 const Footer = () => {
@@ -16,11 +16,11 @@ const Footer = () => {
       sx={{
         background: theme.palette.background.paper,
         p: 6,
-        position:"relative"
+        position: "relative",
       }}
-      
     >
-      <Container maxWidth="lg">
+      <Divider sx={{ borderTopWidth: 2, marginBottom: 3 }} />
+      <Container maxWidth="xl">
         <Grid container spacing={6} justifyContent="space-evenly">
           <Grid item xs={12} sm={6} md={2}>
             <Typography variant="h6" color="text.primary" gutterBottom>
