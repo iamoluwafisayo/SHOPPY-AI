@@ -30,6 +30,7 @@ export const getDesignTokens = (mode) => ({
     text: {
       primary: "#5f6470",
       secondary: grey[700],
+      black: "#000",
       white: "#fff",
     },
     divider: "rgba(129, 139, 156, 0.1)",
