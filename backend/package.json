@@ -1,18 +1,8 @@
 {
   "name": "shoppy-ai",
   "version": "1.0.0",
-  "type": "module",
   "description": "\"Shoppy AI is an innovative solution designed to revolutionize the e-commerce shopping experience. Leveraging cutting-edge artificial intelligence (AI) technology, Shoppy AI empowers users to effortlessly search for products using natural language queries, eliminating the hassle of navigating through complex menus and filters.\"",
-  "main": "server.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/iamoluwafisayo/SHOPPY-AI.git"
-  },
-  
-  "bugs": {
-    "url": "https://github.com/iamoluwafisayo/SHOPPY-AI/issues"
-  },
-  "homepage": "https://github.com/iamoluwafisayo/SHOPPY-AI#readme",
+  "main": "index.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint",
     "check-lint": "lint [0-9]*.js",
@@ -26,6 +16,7 @@
   "dependencies": {
     "bull": "^3.16.0",
     "chai-http": "^4.3.0",
+    "dotenv": "^16.4.5",
     "express": "^4.18.2",
     "image-thumbnail": "^1.0.15",
     "mime-types": "^2.1.35",
@@ -53,12 +44,5 @@
     "nodemon": "^2.0.2",
     "request": "^2.88.0",
     "sinon": "^7.5.0"
-  },
-  "keywords": [
-      "AI",
-      "ALX",
-      "PORTFOLIO",
-      "BUSINESS",
-      "CUSTOMER"
-  ]
+  }
 }
