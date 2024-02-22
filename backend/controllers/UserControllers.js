@@ -26,24 +26,21 @@ export default class UserController {
         }
     }
     static async getUser(req, res){
-        const user = req.body
+        const user = req.email
         try {
-            const result = await dbClient.getUser(user)
-        
+            const result = await dbClient.getUser( {user})
+            console.log(result)
             if (result){
-                const token = jwt.sign({email: result.email}, process.env.JWT_SECRET_KEY)
-                req.session.token = token
-                req.session.email = result.email
-                req.session.save()
-                res.status(200).json(result)
+                return res.status(200).json(result)
             } else {
                 res.status(404).json({error: "User not found"})
             }
         } catch(err){
-            console.log(err)
+            
             res.status(500).json({error: "server error"})
         }
     }
+
     static async updateUser(req, res){
         const user = req.body
         try {

@@ -39,8 +39,7 @@ class DBClient {
         data.password = sha1(data.password);
         const result = await this.usersCollection.findOne(data);
         if (result) {
-            const { email, password } = result;
-            return { email, password };
+            return result;
         }
         return false;
     }

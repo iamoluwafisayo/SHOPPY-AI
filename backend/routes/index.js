@@ -18,11 +18,29 @@ export default function routes(app){
         res.status(200).send({email: req.email})
     })
     app.post('/api/login', (req, res) => {
-        UserController.getUser(req, res)
+        AuthController.getUser(req, res)
     })
     app.post('/api/signup', (req, res) => {
         UserController.addUser(req, res)
     })
+    app.get('/api/profile', verifyToken,  (req, res) => {
+        const email = req.email;
+        try {
+            UserController.getUser(req, res);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: 'Error while retrieving profile' });
+        }
+        console.log(email)
+        // try {
+        //     const user = UserController.getUser({ email });
+        //     console.log(user)
+        //     res.status(200).json(user);
+        // } catch (error) {
+        //     console.error(error);
+        //     res.status(500).json({ error: 'Error while retrieving profile' });
+        // }
+    });
     app.post('/api/logout', (req, res) => {
         console.log(req.session)
         req.session.destroy((err) => {
