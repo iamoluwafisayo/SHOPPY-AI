@@ -21,20 +21,32 @@ class DBClient {
                 this.usersCollection.countDocuments()
             }
         });
-    }
+    } 
     isAlive() {
         return Boolean(this.db)
     }
-    async newUser(data){
-        await this.usersCollection.insertOne(data)
-        return;
+    async newUser(data) {
+        try {
+            data.password = sha1(data.password);
+            await this.usersCollection.createIndex({ email: 1 }, { unique: true });
+            await this.usersCollection.insertOne(data);
+        } catch (error) {
+            throw error; 
+        }
     }
+
     async getUser(data) {
-        return this.usersCollection.findOne(data);
+        data.password = sha1(data.password);
+        const result = await this.usersCollection.findOne(data);
+        if (result) {
+            const { email, password } = result;
+            return { email, password };
+        }
+        return false;
     }
     async update(data, newData) {
         result = await this.usersCollection.updateOne(data, {$set: newData})
-        return result
+        
     }
 }
 

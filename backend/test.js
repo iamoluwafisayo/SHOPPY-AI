@@ -1,9 +1,18 @@
+import usrSchema from './models/UserModel.js';
+import validation from './utils/validator.js';
 
-import  { MongoClient }  from 'mongodb';
-const url = "mongodb://172.17.0.2:27017/mydb";
+const userData = {
+    firstname: 'John',
+    lastname: 'Doe',
+    email: 'daa',
+    password: 'password'
+};
 
-MongoClient.connect(url, function (err, db) {
-    if (err) throw err;
-    console.log("Database created!");
-    db.close();
-});
+   async function valite() {
+       const isValide = await validation(usrSchema, userData);
+       if(isValide === true)
+       {
+           console.log(isValide);
+       }
+   }
+valite()
