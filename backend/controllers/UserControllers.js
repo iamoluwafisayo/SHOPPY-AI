@@ -1,8 +1,6 @@
 import dbClient from "../utils/db";
 import usrSchema from '../models/UserModel.js';
 import validation from '../utils/validator.js';
-import jwt from "jsonwebtoken";
-import SHA1 from "sha1"
 
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 export default class UserController {
@@ -26,17 +24,15 @@ export default class UserController {
         }
     }
     static async getUser(req, res){
-        const user = req.email
+        const email = req.email
         try {
-            const result = await dbClient.getUser( {user})
-            console.log(result)
+            const result = await dbClient.getUser( {email})
             if (result){
                 return res.status(200).json(result)
             } else {
                 res.status(404).json({error: "User not found"})
             }
         } catch(err){
-            
             res.status(500).json({error: "server error"})
         }
     }

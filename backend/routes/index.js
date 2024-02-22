@@ -1,6 +1,7 @@
 import verifyToken  from "../middleware/Auth"
 import AuthController from "../controllers/AuthController"
 import UserController from "../controllers/UserControllers"
+import MessageController from "../controllers/MessagesController"
 
 export default function routes(app){
     app.get('/api/', (req, res) => {
@@ -31,16 +32,10 @@ export default function routes(app){
             console.error(error);
             res.status(500).json({ error: 'Error while retrieving profile' });
         }
-        console.log(email)
-        // try {
-        //     const user = UserController.getUser({ email });
-        //     console.log(user)
-        //     res.status(200).json(user);
-        // } catch (error) {
-        //     console.error(error);
-        //     res.status(500).json({ error: 'Error while retrieving profile' });
-        // }
     });
+    app.post('/api/user/send_message', verifyToken, (req, res) => {
+        MessageController.sendMessage(req, res);
+    })
     app.post('/api/logout', (req, res) => {
         console.log(req.session)
         req.session.destroy((err) => {

@@ -17,7 +17,7 @@ class DBClient {
             } else {
                 this.db = client.db(DB);
                 this.usersCollection = this.db.collection('users');
-                this.filesCollection = this.db.collection('files');
+                this.messagesCollection = this.db.collection('messages');
                 this.usersCollection.countDocuments()
             }
         });
@@ -27,7 +27,10 @@ class DBClient {
     }
     async newUser(data) {
         try {
+            const currentDate = new Date();
             data.password = sha1(data.password);
+            data.createAt = currentDate;
+            data.updateAt = currentDate;
             await this.usersCollection.createIndex({ email: 1 }, { unique: true });
             await this.usersCollection.insertOne(data);
         } catch (error) {
@@ -35,8 +38,9 @@ class DBClient {
         }
     }
 
+
     async getUser(data) {
-        data.password = sha1(data.password);
+        
         const result = await this.usersCollection.findOne(data);
         if (result) {
             return result;
@@ -47,6 +51,17 @@ class DBClient {
         result = await this.usersCollection.updateOne(data, {$set: newData})
         
     }
+    async newMessage(data) {
+        try {
+        const currentDate = new Date();
+        data.createAt = currentDate;
+        data.updateAt = currentDate;
+        await this.messagesCollection.insertOne(data);
+    } catch (error) {
+        throw error;
+    
+    }
+}
 }
 
 const dbClient = new DBClient();

@@ -1,9 +1,12 @@
 import dbClient from "../utils/db";
 import jwt from "jsonwebtoken";
+import sha1 from 'sha1'
+
 
 export default class AuthController{
     static async getUser(req, res) {
         const user = req.body
+        user.password = sha1(user.password)
         try {
             const result = await dbClient.getUser(user)
 
@@ -18,7 +21,6 @@ export default class AuthController{
                 res.status(404).json({ error: "User not found" })
             }
         } catch (err) {
-            console.log(err)
             res.status(500).json({ error: "server error" })
         }
     }
