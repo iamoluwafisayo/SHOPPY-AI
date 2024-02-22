@@ -32,8 +32,10 @@ export default class UserController {
         
             if (result){
                 const token = jwt.sign({email: result.email}, process.env.JWT_SECRET_KEY)
-                res.status(200).json({token: token})
-                //res.status(200).json(result)
+                req.session.token = token
+                req.session.email = result.email
+                req.session.save()
+                res.status(200).json(result)
             } else {
                 res.status(404).json({error: "User not found"})
             }
