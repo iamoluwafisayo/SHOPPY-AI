@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Typography, CardMedia } from "@mui/material";
 
-const GridWithTwoColumns = () => {
+const Section4 = () => {
   return (
     <Grid
       container
@@ -68,4 +68,4 @@ const GridWithTwoColumns = () => {
   );
 };
 
-export default GridWithTwoColumns;
+export default Section4;
