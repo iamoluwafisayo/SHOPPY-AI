@@ -1,20 +1,23 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Menu,
+  Container,
+  Button,
+  useTheme,
+  MenuItem,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { useTheme } from "@mui/material/styles";
+import ButtonLink from "../utils/ButtonLink";
+import { Link } from "react-router-dom";
 
 const pages = ["Home", "Services", "Pricing", "About Us", "Contact Us"];
 
-function ResponsiveNavBar() {
+const ResponsiveNavBar = () => {
   const theme = useTheme();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -40,23 +43,8 @@ function ResponsiveNavBar() {
                 color: theme.palette.text.primary,
               }}
             />
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="#app-bar-with-responsive-menu"
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: theme.palette.text.primary,
-                textDecoration: "none",
-              }}
-            >
-              SHOPPY AI
-            </Typography>
+
+            <ButtonLink theme={theme} />
           </Box>
 
           <Box
@@ -67,23 +55,7 @@ function ResponsiveNavBar() {
             }}
           >
             <AdbIcon />
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="#app-bar-with-responsive-menu"
-              sx={{
-                mr: 2,
-                flexGrow: 1,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: theme.palette.text.primary,
-                textDecoration: "none",
-              }}
-            >
-              SHOPPY AI
-            </Typography>
+            <ButtonLink theme={theme} />
           </Box>
           <Box
             sx={{
@@ -135,7 +107,10 @@ function ResponsiveNavBar() {
                   onClick={handleCloseNavMenu}
                   sx={{ display: "flex", justifyContent: "center" }}
                 >
-                  <Typography>{page}</Typography>
+                  <ButtonLink
+                    page={page}
+                    handleCloseNavMenu={handleCloseNavMenu}
+                  />
                 </MenuItem>
               ))}
               <Box
@@ -146,10 +121,16 @@ function ResponsiveNavBar() {
                   flexDirection: "column",
                 }}
               >
-                <Button sx={{ color: theme.palette.text.primary }}>
+                <Button
+                  component={Link}
+                  to="/auth/signin"
+                  sx={{ color: theme.palette.text.primary }}
+                >
                   Login
                 </Button>
                 <Button
+                  component={Link}
+                  to="/auth/signup"
                   variant="contained"
                   sx={{
                     borderRadius: "20px",
@@ -174,26 +155,32 @@ function ResponsiveNavBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
                 sx={{
                   my: 2,
                   color: theme.palette.text.primary,
-                  display: "block",
                   "&:hover": {
                     background: theme.palette.grey.lightHover,
                     color: theme.palette.text.secondary,
                   },
                 }}
               >
-                {page}
+                <ButtonLink page={page} />
               </Button>
             ))}
           </Box>
 
           <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
-            <Button sx={{ color: theme.palette.text.primary }}>Login</Button>
+            <Button
+              component={Link}
+              to="/auth/signin"
+              sx={{ color: theme.palette.text.primary }}
+            >
+              Login
+            </Button>
             <Button
               color="inherit"
+              component={Link}
+              to="/auth/signup"
               variant="contained"
               sx={{
                 borderRadius: "20px",
