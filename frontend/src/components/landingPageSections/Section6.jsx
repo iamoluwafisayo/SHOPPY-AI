@@ -16,6 +16,7 @@ const Section6 = () => {
         background: "#C4E0FD",
         minHeight: "573px",
       }}
+      id="about-us"
     >
       <Box gridColumn="span 12" sx={{ padding: "16px 0" }}>
         <Typography
