@@ -11,6 +11,7 @@ const Section2 = () => {
       sx={{ marginTop: "80px" }}
       justifyContent="center"
       alignItems="center"
+      id="services"
     >
       {/* Left Column */}
       <Grid item xs={12} md={6}>
