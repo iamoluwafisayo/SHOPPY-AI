@@ -6,7 +6,7 @@ const Section1 = () => {
   const theme = useTheme();
 
   return (
-    <Grid container spacing={2} alignItems="center">
+    <Grid container spacing={2} alignItems="center" id="home">
       {/* First Column: Text */}
       <Grid item xs={12} md={6} sx={{ marginTop: { xs: 1, md: 10 } }}>
         <Typography
@@ -60,11 +60,7 @@ const Section1 = () => {
 
       {/* Second Column: Image */}
       <Grid item xs={12} md={6}>
-        <CardMedia
-          component="img"
-          image="/images/img1.png"
-          alt="Image"
-        />
+        <CardMedia component="img" image="/images/img1.png" alt="Image" />
       </Grid>
     </Grid>
   );
