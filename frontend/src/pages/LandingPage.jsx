@@ -7,6 +7,7 @@ import Section3 from "../components/landingPageSections/Section3";
 import Section4 from "../components/landingPageSections/Section4";
 import Section5 from "../components/landingPageSections/Section5";
 import Section6 from "../components/landingPageSections/Section6";
+import Section7 from "../components/landingPageSections/Section7";
 import Footer from "../components/common/footer";
 
 const LandingPage = () => {
@@ -20,9 +21,10 @@ const LandingPage = () => {
         <Section4 />
         <Section5 />
         <Section6 />
+        <Section7 />
       </Box>
       <Footer />
-    </Container>   
+    </Container>
   );
 };
 
