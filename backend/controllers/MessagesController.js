@@ -28,4 +28,8 @@ export default class MessageController{
             res.status(400).json({error: "Message not sent"});
         }
     }
+    static async getMessages(req, res) {
+       const messages = await dbClient.findMessages({})
+       res.status(200).send(messages)
+    }
 }

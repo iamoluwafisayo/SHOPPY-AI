@@ -47,8 +47,12 @@ class DBClient {
         }
         return false;
     }
+    async findUsers(){
+        const result = await this.usersCollection.find({}, {sort: {updateAt: -1}}).toArray()
+        return result
+    }
     async update(data, newData) {
-        result = await this.usersCollection.updateOne(data, {$set: newData})
+        const result = this.usersCollection.updateOne(data, {$set: newData})
         
     }
     async newMessage(data) {
@@ -62,6 +66,9 @@ class DBClient {
     
     }
 }
+  async findMessages(query){
+      return this.messagesCollection.find(query, { sort: { updateAt: -1 } }).toArray();
+  }
 }
 
 const dbClient = new DBClient();

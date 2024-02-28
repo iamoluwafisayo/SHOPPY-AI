@@ -36,6 +36,21 @@ export default class UserController {
             res.status(500).json({error: "server error"})
         }
     }
+    static async getAllUsers(req, res){
+        try {
+            const users = await dbClient.findUsers();
+            if(users.length === 0) {
+                res.status(200).json({message: "No User yet"})
+            }else {
+                res.status(200).json(users)
+            }
+        }catch(err){
+            console.log(err)
+            res.status(500).send({error: "Server Error"})
+        }
+        
+
+    }
 
     static async updateUser(req, res){
         const user = req.body
@@ -47,7 +62,6 @@ export default class UserController {
                 res.status(404).json({error: "User not found"})
             }
         } catch(err){
-            console.log(err)
             res.status(500).json({error: "server error"})
         }
     }

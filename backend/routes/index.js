@@ -6,18 +6,16 @@ import MessageController from "../controllers/MessagesController"
 export default function routes(app){
     app.get('/api/', (req, res) => {
         console.log(req.cookies)
-        res.status(200).send({"name": "From api index"})
+        res.status(200).send({"message": "Welcome to ShopyAi's API"})
     })
     app.post('/api/users', (req, res) => {
         
     })
-    app.get('/api/users', (req, res) => {})
-    app.get('/api/message/:id', verifyToken, (req, res) => { })
-    app.post('/api/messages/:id', (req, res) => {} )
-    app.get('/api/messages/', verifyToken, (req, res) => { })
-    app.post('/api/messages/', verifyToken, (req, res) => {
-        res.status(200).send({email: req.email})
+    app.get('/api/users', (req, res) => {
+        UserController.getAllUsers(req, res)
     })
+    
+    
     app.post('/api/login', (req, res) => {
         AuthController.getUser(req, res)
     })
@@ -36,16 +34,17 @@ export default function routes(app){
     app.post('/api/user/send_message', verifyToken, (req, res) => {
         MessageController.sendMessage(req, res);
     })
+    app.get('/api/messages', verifyToken, (req, res) => { 
+        MessageController.getMessages(req, res)
+    })
     app.post('/api/logout', (req, res) => {
-        console.log(req.session)
+        //console.log(req.session)
         req.session.destroy((err) => {
             if (err) {
-                console.error(err);
                 return res.status(500).json({ error: 'failed' });
             }
             res.json({ message: 'logout' });
         });
-        console.log(req.session)
     });
     
 }
