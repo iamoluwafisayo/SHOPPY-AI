@@ -45,7 +45,6 @@ export default class UserController {
                 res.status(200).json(users)
             }
         }catch(err){
-            console.log(err)
             res.status(500).send({error: "Server Error"})
         }
         
