@@ -11,12 +11,14 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useTheme } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 
 const pages = ["Home", "Services", "Pricing", "About Us", "Contact Us"];
 
 function ResponsiveNavBar() {
   const theme = useTheme();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -24,7 +26,7 @@ function ResponsiveNavBar() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
+  const navigate = useNavigate();
   return (
     <AppBar
       position="fixed"
@@ -146,7 +148,7 @@ function ResponsiveNavBar() {
                   flexDirection: "column",
                 }}
               >
-                <Button sx={{ color: theme.palette.text.primary }}>
+                <Button onClick={() => navigate('/login')} sx={{ color: theme.palette.text.primary }}>
                   Login
                 </Button>
                 <Button
