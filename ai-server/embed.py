@@ -62,24 +62,33 @@ def embed_data():
 
 
 
-def query_data():
+def query_embeddings(query):
     # Query data
     products_collection = chroma_client.get_collection(name="products")
-    
-    query = "TOM TAILOR"
+
     converted_query = embedding_function(query)
     
-    print("Converted Query:", converted_query)
 
     results = products_collection.query(
         query_embeddings=converted_query,
         n_results=10,
     )
-    
-    print("Query Results:", results)
+
+    documents = []
+
+    for document in results["documents"][0]:
+        documents.append(json.loads(document))
+
+    print(documents)
+
+    products = []
+    [products.append(item) for item in documents if item not in products]
+
+    print(products)
+
+    return products
+
 
 
 if __name__ == "__main__":
     embed_data()
-    print("=========== Results ===========")
-    query_data()
