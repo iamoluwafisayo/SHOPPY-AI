@@ -18,7 +18,7 @@ class DBClient {
                 this.db = client.db(DB);
                 this.usersCollection = this.db.collection('users');
                 this.messagesCollection = this.db.collection('messages');
-                this.usersCollection.countDocuments()
+                this.otpCollection = this.db.collection('otps')
             }
         });
     } 
@@ -52,8 +52,12 @@ class DBClient {
         return result
     }
     async update(data, newData) {
-        const result = this.usersCollection.updateOne(data, {$set: newData})
-        
+        try {
+            newData.updateAt = new Date();
+            await this.usersCollection.updateOne(data, { $set: newData });
+        }catch (error) {
+            throw error;
+        }
     }
     async newMessage(data) {
         try {
@@ -68,6 +72,24 @@ class DBClient {
 }
   async findMessages(query){
       return this.messagesCollection.find(query, { sort: { updateAt: -1 } }).toArray();
+  }
+
+  async newOtp(data){
+
+    try{
+        await this.otpCollection.createIndex({"expire": 1},{expireAfterSeconds: 0})
+        await this.otpCollection.insertOne(data)
+    }catch(err){
+        throw err
+    }
+  }
+  async getOtp(otp){
+    try{
+        const result = await this.otpCollection.findOne(otp)
+        return result
+    }catch(err){
+        throw err
+    }
   }
 }
 

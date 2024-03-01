@@ -10,3 +10,6 @@ npm install
 
 ```bash
 npm run dev server
+
+3- API DOCS
+- [DOCS](https://docs.google.com/document/d/1cm8bRV860SbpTBaIvK8m2UMwN3-kbZ_qIOvXqChD8QA/edit?usp=sharing)
