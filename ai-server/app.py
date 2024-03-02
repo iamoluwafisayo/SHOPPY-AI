@@ -20,10 +20,11 @@ def hello_world():
 # use json to get message
 @app.route('/ask', methods=['POST'])
 def ask():
-    message = request.json["message"]
+    chat = request.json["chat"]
     id = request.json["id"]
+    message = chat[-1]["message"]
 
-    messages = cache.get(id) or []
+    messages = cache.get(id) or chat
 
     products = query_embeddings(message)
 
