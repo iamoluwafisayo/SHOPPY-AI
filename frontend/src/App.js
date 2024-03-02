@@ -1,5 +1,14 @@
 import React from "react";
-import { LandingPage, SigninPage, SignupPage } from "./pages";
+import {
+  LandingPage,
+  SigninPage,
+  SignupPage,
+  ResetPassword,
+  ResetPasswordConfirm,
+  SuccessPage,
+  OTPAuth,
+} from "./pages";
+import PrivateRoutes from "./components/utils/PrivateRoutes";
 import { Routes, Route } from "react-router-dom";
 
 const App = () => {
@@ -9,6 +18,16 @@ const App = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/auth/signin/" element={<SigninPage />} />
         <Route path="/auth/signup/" element={<SignupPage />} />
+        <Route path="/auth/reset-password/" element={<ResetPassword />} />
+        <Route path="/auth/otp/" element={<OTPAuth />} />
+        <Route element={<PrivateRoutes />}>
+          ""
+        </Route>
+        <Route path="/auth/success/" element={<SuccessPage />} />
+        <Route
+          path="/auth/reset-password-confirm/"
+          element={<ResetPasswordConfirm />}
+        />
       </Routes>
     </React.Fragment>
   );
