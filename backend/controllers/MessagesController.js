@@ -42,7 +42,7 @@ export default class MessageController {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(chat),
+                body: JSON.stringify(chat, chatId),
             })
                 .then((response) => {
                     if (response.status === 200) {
