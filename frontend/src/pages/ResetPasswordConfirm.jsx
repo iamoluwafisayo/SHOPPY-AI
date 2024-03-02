@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form";
 import { passwordValidator } from "../components/utils/validators";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import LoadingButton from "@mui/lab/LoadingButton";
 import {
   Box,
-  Button,
   TextField,
   Typography,
   Container,
@@ -23,11 +23,14 @@ const ResetPasswordConfirm = () => {
     formState: { errors },
   } = useForm();
   const [showPassword, setShowPassword] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const password = watch("password");
   const onSubmit = async (data) => {
+    setLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 2000));
+    setLoading(false);
     navigate("/auth/success");
   };
 
@@ -114,14 +117,16 @@ const ResetPasswordConfirm = () => {
             helperText={errors.cpassword ? errors.cpassword.message : ""}
             fullWidth
           />
-          <Button
+          <LoadingButton
+            variant="contained"
             type="submit"
             fullWidth
-            variant="contained"
-            sx={{ mt: 2, mb: 3, borderRadius: "20px", padding: ".6rem" }}
+            loading={loading}
+            loadingPosition="end"
+            sx={{ mt: 2, mb: 3, borderRadius: "20px"}}
           >
-            Reset Password
-          </Button>
+            {loading ? "Resetting Password..." : "Reset Password"}
+          </LoadingButton>
         </Box>
       </Box>
     </Container>

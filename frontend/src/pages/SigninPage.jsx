@@ -19,6 +19,7 @@ import {
   IconButton,
   InputAdornment,
 } from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 const SignIn = () => {
   const {
@@ -27,10 +28,14 @@ const SignIn = () => {
     formState: { errors },
   } = useForm();
   const [showPassword, setShowPassword] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    setLoading(true);
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    setLoading(false);
     console.log({
       data,
     });
@@ -125,15 +130,16 @@ const SignIn = () => {
             <Link href="/auth/reset-password/">Forgot Password?</Link>
           </Box>
           {/* Sign in button */}
-          <Button
-            fullWidth
-            type="submit"
+          <LoadingButton
             variant="contained"
+            type="submit"
+            fullWidth
+            loading={loading}
+            loadingPosition="end"
             sx={{ mt: 2, mb: 3, borderRadius: "20px", padding: ".6rem 6rem" }}
           >
-            Login
-          </Button>
-
+            {loading ? "Signing In..." : "Sign In"}
+          </LoadingButton>
           <Typography component="h1">
             Don't have an account?
             <Link href="/auth/signup/" variant="body2">

@@ -10,6 +10,7 @@ export const OTPAuthState = {
   otp: ["", "", "", "", "", ""],
   otpError: [],
   isResendButtonDisabled: true,
-  timer: 120,
+  timer: 60,
   serverOtp: "",
+  loading: false,
 };

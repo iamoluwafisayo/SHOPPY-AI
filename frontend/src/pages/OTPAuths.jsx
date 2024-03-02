@@ -1,10 +1,11 @@
 import React, { useRef, useEffect, useReducer } from "react";
-import { Box, Button, TextField, Container, Typography } from "@mui/material";
+import { Box, TextField, Container, Typography } from "@mui/material";
 import { obfuscateEmail } from "../components/utils/obfuscateEmail";
 import { useLocation, useNavigate } from "react-router-dom";
 import { OTPAuthState } from "../components/reducers/states/initState";
 import { OTPReducer } from "../components/reducers/OTPReducer";
 import ACTIONS from "../components/reducers/actions";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 const OTPAuth = () => {
   const [state, dispatch] = useReducer(OTPReducer, OTPAuthState);
@@ -27,10 +28,12 @@ const OTPAuth = () => {
     }
   }, [state.isResendButtonDisabled]);
 
-  const handleResendCode = () => {
+  const handleResendCode = async () => {
+    dispatch({ type: ACTIONS.SET_LOADING, payload: true });
+    await new Promise((resolve) => setTimeout(resolve, 1500));
     dispatch({
       type: ACTIONS.SET_TIMER_AND_BTN,
-      payload: { button: true, timer: 120 },
+      payload: { button: true, timer: 60, loading: false },
     });
   };
 
@@ -87,7 +90,7 @@ const OTPAuth = () => {
       otpInputs.current[index - 1].focus();
     }
   };
-  
+
   return (
     <Container
       maxWidth="sm"
@@ -150,13 +153,19 @@ const OTPAuth = () => {
               ? `Resend available in ${formatTime(state.timer)}`
               : "You can resend the code now."}
           </Typography>
-          <Button
+
+          <LoadingButton
+            variant="contained"
+            type="submit"
             size="small"
             onClick={handleResendCode}
+            loading={state.loading}
+            loadingPosition="end"
             disabled={state.isResendButtonDisabled}
+            sx={{ mt: 2, mb: 3, borderRadius: "20px", padding: ".6rem 6rem" }}
           >
-            Resend Code
-          </Button>
+            {state.loading ? "Sending Code..." : "Resend Code"}
+          </LoadingButton>
         </Box>
       </Box>
     </Container>

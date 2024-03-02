@@ -27,8 +27,13 @@ export const OTPReducer = (state, action) => {
         ...state,
         isResendButtonDisabled: action.payload.button,
         timer: action.payload.timer,
+        loading: action.payload.loading
       };
-
+    case ACTIONS.SET_LOADING:
+      return {
+        ...state,
+        loading: action.payload,
+      };
     case ACTIONS.SET_TIMER:
       if (state.timer <= 1) {
         clearInterval(action.payload.interval);

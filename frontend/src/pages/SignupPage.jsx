@@ -2,6 +2,7 @@ import React from "react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useForm } from "react-hook-form";
 import Alert from "../components/utils/Alert";
+import LoadingButton from "@mui/lab/LoadingButton";
 import {
   Box,
   Button,
@@ -28,10 +29,15 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
   const [showPassword, setShowPassword] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    setLoading(true);
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    setLoading(false);
+
     console.log({
       data,
     });
@@ -131,15 +137,17 @@ const SignUp = () => {
             }}
           />
 
-          {/* Sign in button */}
-          <Button
-            fullWidth
-            type="submit"
+          {/* Sign up button */}
+          <LoadingButton
             variant="contained"
+            type="submit"
+            loading={loading}
+            loadingPosition="end"
+            fullWidth
             sx={{ mt: 2, mb: 3, borderRadius: "20px", padding: ".6rem 6rem" }}
           >
-            Sign Up
-          </Button>
+            {loading ? "Signing up..." : "Sign Up"}
+          </LoadingButton>
 
           <Typography component="h1">
             Already have an account?

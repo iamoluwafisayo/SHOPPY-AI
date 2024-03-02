@@ -2,9 +2,9 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { emailValidator } from "../components/utils/validators";
 import { useNavigate } from "react-router-dom";
+import LoadingButton from "@mui/lab/LoadingButton";
 import {
   Box,
-  Button,
   TextField,
   Typography,
   Container,
@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 
 const ResetPassword = () => {
+  const [loading, setLoading] = React.useState(false);
   const navigate = useNavigate();
   const {
     register,
@@ -19,7 +20,10 @@ const ResetPassword = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    setLoading(true);
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    setLoading(false);
     const encodedEmail = btoa(data.email); // Base64 encode the email
     navigate(`/auth/otp?email=${encodedEmail}`);
   };
@@ -83,14 +87,16 @@ const ResetPassword = () => {
             autoComplete="email"
             autoFocus
           />
-          <Button
+          <LoadingButton
+            variant="contained"
             type="submit"
             fullWidth
-            variant="contained"
-            sx={{ mt: 2, mb: 3, borderRadius: "20px", padding: ".6rem" }}
+            loading={loading}
+            loadingPosition="end"
+            sx={{ mt: 2, mb: 3, borderRadius: "20px", padding: ".6rem 6rem" }}
           >
-            Send Link
-          </Button>
+            {loading ? "Sending Link..." : "Send Link"}
+          </LoadingButton>
         </Box>
       </Box>
     </Container>
