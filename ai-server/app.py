@@ -21,7 +21,7 @@ def hello_world():
 @app.route('/ask', methods=['POST'])
 def ask():
     chat = request.json["chat"]
-    id = request.json["id"]
+    id = request.json["chatId"]
     message = chat[-1]["message"]
 
     messages = cache.get(id) or chat
