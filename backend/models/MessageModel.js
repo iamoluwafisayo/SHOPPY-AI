@@ -1,9 +1,9 @@
-import e from "express";
 import Joi from "joi";
 
 const msgSchema = Joi.object({
     message: Joi.string().required(),
-    sender: Joi.string().email().required(),
-    //receiver: Joi.string().min(3).max(30).required()
+    userId: Joi.string().email().required(),
+    chatId: Joi.string().required(),
+    role: Joi.string().valid("user", "assistant").required(),
 });
 export default msgSchema;
