@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet, Navigate } from "react-router-dom";
 
 const PrivateRoutes = () => {
-  const isAuthenticated = false;
+  const isAuthenticated = true;
 
   return isAuthenticated ? <Outlet /> : <Navigate to="/" />;
 };
