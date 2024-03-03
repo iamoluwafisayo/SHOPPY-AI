@@ -23,7 +23,7 @@ const Sidebar = ({ window, sideBarWidth, mobileOpen, handleDrawerToggle }) => {
           alt="Logo"
           sx={{ width: 40 }}
         />
-        <Typography variant="h6" sx={{ fontWeight: "bold", ml: 2 }}>
+        <Typography variant="h6" sx={{ fontWeight: "bold", ml: 2, color:"grey.dark" }}>
           Shoppy Ai
         </Typography>
       </Toolbar>

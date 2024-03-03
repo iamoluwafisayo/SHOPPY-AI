@@ -21,7 +21,7 @@ const SidebarItem = ({ name, icon, url }) => {
         <ListItemIcon sx={{ color: "sidebar.textColor" }}>{icon}</ListItemIcon>
         <ListItemText
           primary={name}
-          sx={{ ml: "-10px", color: "sidebar.textColor" }}
+          sx={{ ml: "-10px", color: "grey.dark" }}
         />
       </ListItemButton>
     </NavLink>
