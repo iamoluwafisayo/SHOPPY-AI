@@ -1,0 +1,43 @@
+a.active > .linkBtn {
+    background-color: #d6d6d6 !important;
+    position: relative;
+  }
+  
+  a.active > .linkBtn::before {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 4px;
+    left: 0;
+    top: 0;
+    background-color: #027edd;
+  }
+  
+  .link {
+    color: #027edd !important;
+    text-decoration: none;
+  }
+  
+  span.Pending {
+    color: #c49c1a;
+    background-color: #c49c1a33;
+  }
+  span.Delivered,
+  span.Completed {
+    color: #388b84;
+    background-color: #388b8433;
+  }
+  span.Cancelled {
+    color: #fd4332;
+    background-color: #fd433233;
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  @media (min-width: 600px) {
+    .hide-scrollbar::-webkit-scrollbar {
+      display: block;
+    }
+  }
