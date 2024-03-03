@@ -46,11 +46,10 @@ export default class PasswordController {
                 const otp = generateOTP()
                 const otpExpire = generateExpirationTime()
                 await dbClient.newOtp({email: userEmail, otp: otp, expire: otpExpire})
-                console.log(adminEmail)
-                var transporter = nodemailer.createTransport({
+            
+                const transporter = nodemailer.createTransport({
                     host: "smtp.gmail.com",
                     port: 587,
-            
                     auth: {
                         user: adminEmail,
                         pass: pass.toString()

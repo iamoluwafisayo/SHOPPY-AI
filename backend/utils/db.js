@@ -22,6 +22,7 @@ class DBClient {
                     this.usersCollection = this.db.collection("users");
                     this.messagesCollection = this.db.collection("messages");
                     this.otpCollection = this.db.collection("otps");
+                    this.contactCollection = this.db.collection("contacts");
                 }
             }
         );
@@ -111,6 +112,23 @@ class DBClient {
         } catch (err) {
             throw err;
         }
+    }
+    async newContact(data) {
+        try {
+            const currentDate = new Date();
+            data.createAt = currentDate;
+            data.updateAt = currentDate;
+            await this.contactCollection.insertOne(data);
+        } catch (error) {
+            throw error;
+        }
+    }
+    async getContacts() {
+        const result = await this.contactCollection
+            .find({}, { sort: { updateAt: -1 } })
+            .toArray();
+        return result;
+    
     }
 }
 

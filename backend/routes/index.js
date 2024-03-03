@@ -3,6 +3,7 @@ import AuthController from "../controllers/AuthController";
 import UserController from "../controllers/UserControllers";
 import MessageController from "../controllers/MessagesController";
 import PasswordController from "../controllers/passwordController";
+import ContactsUsController from "../controllers/ContactsUsController";
 
 export default function routes(app) {
     app.get("/api/", (req, res) => {
@@ -42,6 +43,13 @@ export default function routes(app) {
     });
     app.get("/api/messages", verifyToken, (req, res) => {
         MessageController.getMessages(req, res);
+    });
+    app.post("/api/contact_us", (req, res) => {
+        ContactsUsController.contactUs(req, res);
+    });
+    
+    app.get("/api/contact_us", (req, res) => {
+        ContactsUsController.getContacts(req, res);
     });
 
     app.post("/api/logout", (req, res) => {

@@ -1,21 +1,29 @@
-import { MailtrapClient } from "mailtrap"
+const Joi = require('joi');
 
+// Définition d'un schéma de validation pour un utilisateur
+const userSchema = Joi.object({
+    username: Joi.string().required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
+    birthdate: Joi.date().max('now').required(),
+    isAdmin: Joi.boolean().default(true)
+});
 
+// Données à valider
+const userData = {
+    username: "123",
+    email: 'john.doe@example.com',
+    password: 'password123',
+    birthdate: '1990-01-01',
+   
+};
 
-const TOKEN = "c1b458b0f3f9cd5a3bd185494c78cab2";
-const SENDER_EMAIL = "wassioubouraima56@gmail.com";
-const RECIPIENT_EMAIL = "wachioubouraima56@gmail.com";
+// Validation des données
+const validationResult = userSchema.validate(userData);
 
-const client = new MailtrapClient({ token: TOKEN });
+if (validationResult.error) {
+    console.error(validationResult.error.details[0].message.replace(/"/g, ''));
+} else {
+    console.log("Données valides :", validationResult.value);
+}
 
-const sender = { name: "Mailtrap Test", email: SENDER_EMAIL };
-
-client
-    .send({
-        from: sender,
-        to: [{ email: RECIPIENT_EMAIL }],
-        subject: "Hello from Mailtrap!",
-        text: "Welcome to Mailtrap Sending!",
-    })
-    .then(console.log)
-    .catch(console.error);
