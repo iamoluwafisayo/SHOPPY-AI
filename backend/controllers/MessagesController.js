@@ -13,23 +13,23 @@ export default class MessageController {
     }
     static async sendMessage(req, res) {
         try {
-            let { message, chatId } = req.body;
+            let { content, chatId } = req.body;
             const userId = req.user._id;
 
-            if (!message) {
+            if (!content) {
                 return res.status(400).json({ error: "Message is required" });
             }
             if (!chatId) {
                 chatId = uuidv4();
-                chat = [{ message, role: "user" }];
+                chat = [{ content, role: "user" }];
             } else {
                 // return  only the message and the role
                 const chat = await dbClient.getChat(chatId);
-                chat.push({ message, role: "user" });
+                chat.push({ content, role: "user" });
             }
             await dbClient.newMessage({
                 chatId,
-                message,
+                content,
                 userId,
                 role: "user",
             });
@@ -57,12 +57,12 @@ export default class MessageController {
 
             await dbClient.newMessage({
                 chatId,
-                message: assistantResponse,
+                content: assistantResponse,
                 userId,
                 role: "assistant",
             });
 
-            res.status(200).json({ message: assistantResponse, success: true });
+            res.status(200).json({ content: assistantResponse, success: true });
         } catch (error) {
             console.log(error);
             res.status(500).json({ error: "Server Error" });
