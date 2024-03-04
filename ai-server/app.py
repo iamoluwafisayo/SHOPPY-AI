@@ -10,7 +10,7 @@ app.url_map.strict_slashes = False
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
 def get_prompt(products, criteria):
-    return f"Which of the following products is the best {criteria}?\n\n" + "\n".join(products)
+    return f"Which of the following products is the best {criteria}?\n\n" + "\n".join(str(products))
 
 @app.route('/')
 def hello_world():

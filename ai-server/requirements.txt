@@ -2,3 +2,5 @@ chromadb
 streamlit
 pandas
 Flask-Caching
+Flask
+Gunicorn

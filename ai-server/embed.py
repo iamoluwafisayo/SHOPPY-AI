@@ -84,8 +84,6 @@ def query_embeddings(query):
     products = []
     [products.append(item) for item in documents if item not in products]
 
-    print(products)
-
     return products
 
 
