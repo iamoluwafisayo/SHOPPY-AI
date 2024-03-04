@@ -22,6 +22,7 @@ class DBClient {
                     this.usersCollection = this.db.collection("users");
                     this.messagesCollection = this.db.collection("messages");
                     this.otpCollection = this.db.collection("otps");
+                    this.contactCollection = this.db.collection("contacts");
                 }
             }
         );
@@ -33,8 +34,8 @@ class DBClient {
         try {
             const currentDate = new Date();
             data.password = sha1(data.password);
-            data.createAt = currentDate;
-            data.updateAt = currentDate;
+            data.createdAt = currentDate;
+            data.updatedAt = currentDate;
             await this.usersCollection.createIndex(
                 { email: 1 },
                 { unique: true }
@@ -54,13 +55,13 @@ class DBClient {
     }
     async findUsers() {
         const result = await this.usersCollection
-            .find({}, { sort: { updateAt: -1 } })
+            .find({}, { sort: { updatedAt: -1 } })
             .toArray();
         return result;
     }
     async update(data, newData) {
         try {
-            newData.updateAt = new Date();
+            newData.updatedAt = new Date();
             await this.usersCollection.updateOne(data, { $set: newData });
         } catch (error) {
             throw error;
@@ -69,8 +70,8 @@ class DBClient {
     async newMessage(data) {
         try {
             const currentDate = new Date();
-            data.createAt = currentDate;
-            data.updateAt = currentDate;
+            data.createdAt = currentDate;
+            data.updatedAt = currentDate;
             await this.messagesCollection.insertOne(data);
         } catch (error) {
             throw error;
@@ -78,7 +79,7 @@ class DBClient {
     }
     async findMessages(query) {
         return this.messagesCollection
-            .find(query, { sort: { updateAt: -1 } })
+            .find(query, { sort: { updatedAt: -1 } })
             .toArray();
     }
 
@@ -111,6 +112,23 @@ class DBClient {
         } catch (err) {
             throw err;
         }
+    }
+    async newContact(data) {
+        try {
+            const currentDate = new Date();
+            data.createdAt = currentDate;
+            data.updatedAt = currentDate;
+            await this.contactCollection.insertOne(data);
+        } catch (error) {
+            throw error;
+        }
+    }
+    async getContacts() {
+        const result = await this.contactCollection
+            .find({}, { sort: { updatedAt: -1 } })
+            .toArray();
+        return result;
+    
     }
 }
 
