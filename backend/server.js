@@ -6,6 +6,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 const PORT = process.env.PORT || 5000
+const HOST = process.env.HOST || 'localhost'
 
 const app = express()
 app.use(cookieParser());
@@ -19,6 +20,6 @@ app.use(session ({
 
 
 routes(app)
-app.listen(PORT, () => {
-    console.log(`The server is running on ${PORT}`)
+app.listen(PORT, HOST, () => {
+    console.log(`The server is running on http://${HOST}:${PORT}`)
 })
