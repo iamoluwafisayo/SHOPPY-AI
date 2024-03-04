@@ -2,7 +2,6 @@ import dbClient from "../utils/db";
 import dotenv from 'dotenv'
 import nodemailer from 'nodemailer'
 import sha1 from 'sha1'
-import { log } from "util";
 
 dotenv.config()
 
