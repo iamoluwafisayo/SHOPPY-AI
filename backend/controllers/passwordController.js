@@ -2,6 +2,7 @@ import dbClient from "../utils/db";
 import dotenv from 'dotenv'
 import nodemailer from 'nodemailer'
 import sha1 from 'sha1'
+import { log } from "util";
 
 dotenv.config()
 
@@ -25,13 +26,18 @@ function generateEmailMessage(otp, email, firstname, expiration_time = 1) {
 function generateOTP() {
     return Math.floor(1000 + Math.random() * 9000);
 }
+function maskedEmail(email) {
+    const id = email.indexOf('@') - 1;
+    const middle = email.slice(2, id);
+    const maskedEmail = email.replace(middle, '******');
+    return maskedEmail;
 
+}
 function generateExpirationTime(minutes = 2) {
     const expiration = new Date();
     expiration.setMinutes(expiration.getMinutes() + minutes);
     return expiration;
 }
-
 
 export default class PasswordController {
     static async recovery(req, res){
@@ -47,7 +53,7 @@ export default class PasswordController {
                 const otp = generateOTP()
                 const otpExpire = generateExpirationTime()
                 await dbClient.newOtp({email: userEmail, otp: otp, expire: otpExpire})
-            
+               
                 const transporter = nodemailer.createTransport({
                     host: "smtp.gmail.com",
                     port: 587,
@@ -72,7 +78,9 @@ export default class PasswordController {
                        // if the is not valide email
                         return res.status(500).json({ error: "Failed to send email" });
                     } else {
-                        res.status(200).json({message: "We have sent you an email with the OTP code"})
+                        const emailMasked = maskedEmail(userEmail).toString()
+                        const message = `We have sent an email to ${emailMasked} with the OTP code`
+                        res.status(200).json({message})
                     }
                 } )
 
