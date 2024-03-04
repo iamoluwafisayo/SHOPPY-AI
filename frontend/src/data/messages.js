@@ -1,6 +1,8 @@
 export const messages = [
   {
     id: "m1",
+    senderId: "1",
+    receiverId: "2",
     text: "How are you, Lukas!",
     createdAt: "2022-10-10T12:48:00.000Z",
     user: {
@@ -117,3 +119,74 @@ export const messages = [
     },
   },
 ];
+
+// export const messages = [
+//   {
+//     id: "1",
+//     senderId: "1",
+//     receiverId: "2",
+//     text: "Hi there!",
+//     createdAt: "2023-03-03T09:00:00Z",
+//     user: {
+//       id: "u1",
+//       name: "Brian",
+//     },
+//   },
+//   {
+//     id: "2",
+//     senderId: "2",
+//     receiverId: "1",
+//     text: "Hello! How's it going?",
+//     createdAt: "2023-03-03T09:01:00Z",
+//     user: {
+//       id: "u2",
+//       name: "Brian",
+//     },
+//   },
+//   {
+//     id: "3",
+//     senderId: "1",
+//     receiverId: "2",
+//     text: "All good, just been busy with work. You?",
+//     createdAt: "2023-03-03T09:02:00Z",
+//     user: {
+//       id: "u3",
+//       name: "Brian",
+//     },
+//   },
+//   {
+//     id: "4",
+//     senderId: "2",
+//     receiverId: "1",
+//     text: "Same here. Projects are piling up.",
+//     createdAt: "2023-03-03T09:03:00Z",
+//     user: {
+//       id: "u4",
+//       name: "Brian",
+//     },
+//   },
+//   {
+//     id: "5",
+//     senderId: "1",
+//     receiverId: "2",
+//     text: "We should catch up over coffee sometime.",
+//     createdAt: "2023-03-03T10:15:00Z",
+//     user: {
+//       id: "u5",
+//       name: "Brian",
+//     },
+//   },
+//   {
+//     id: "6",
+//     senderId: "2",
+//     receiverId: "1",
+//     text: "Definitely! Let's plan for next week?",
+//     createdAt: "2023-03-03T10:17:00Z",
+//     user: {
+//       id: "u6",
+//       name: "Brian",
+//     },
+//   },
+// ];
+
+

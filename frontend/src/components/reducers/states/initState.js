@@ -14,3 +14,13 @@ export const OTPAuthState = {
   serverOtp: "",
   loading: false,
 };
+
+export const ChatState = {
+  selectedUser: null,
+  newMessage: "",
+  isReady: false,
+  typing: false,
+  newConversation: true,
+  selectedConversation: null,
+  conversations: {},
+};

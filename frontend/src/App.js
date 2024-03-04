@@ -8,8 +8,6 @@ import {
   SuccessPage,
   OTPAuth,
   Dashboard,
-  Settings,
-  DashboardHome,
   Chats,
 } from "./pages";
 import PrivateRoutes from "./components/utils/PrivateRoutes";
@@ -26,8 +24,6 @@ const App = () => {
         <Route path="/auth/otp/" element={<OTPAuth />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/dashboard/*" element={<Dashboard />}>
-            <Route path="" element={<DashboardHome />} />
-            <Route path="settings" element={<Settings />} />
             <Route path="chats" element={<Chats />} />
           </Route>
         </Route>

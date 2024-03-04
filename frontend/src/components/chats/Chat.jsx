@@ -1,7 +1,7 @@
+import React from "react";
 import styled from "@emotion/styled";
 import {
   Avatar,
-  Badge,
   Box,
   Divider,
   IconButton,
@@ -9,30 +9,74 @@ import {
   TextField,
   Tooltip,
   Typography,
-  Switch,
+  Toolbar,
+  CardMedia,
 } from "@mui/material";
-import { FiPhoneCall, FiSend, FiVideo } from "react-icons/fi";
-import { FaEllipsisV } from "react-icons/fa";
-import { messages } from "../../data/messages";
+import { timestampFormatter } from "../utils/chatUtils/time";
+import { FiSend } from "react-icons/fi";
+import { FaRobot, FaUserTie } from "react-icons/fa";
+import { ChatReducer } from "../reducers/ChatReducer";
+import ACTIONS from "../reducers/actions";
+import { ChatState } from "../reducers/states/initState";
 
-const Chat = () => {
-  const StyledBadge = styled(Badge)(({ theme }) => ({
-    "& .MuiBadge-badge": {
-      backgroundColor: "#44b700",
-      color: "#44b700",
-      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-      "&::after": {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "50%",
-        border: "1px solid currentColor",
-        content: '""',
-      },
-    },
-  }));
+const Chat = ({ newConversation, conversations }) => {
+  const messagesEndRef = React.useRef(null);
+  const [state, dispatch] = React.useReducer(ChatReducer, ChatState);
+
+  React.useEffect(() => {
+    if (Object.keys(conversations).length > 0) {
+      dispatch({
+        type: ACTIONS.SET_CHAT_DATA,
+        payload: { conversations: conversations, isReady: true },
+      });
+    }
+  }, [newConversation, conversations]);
+
+  console.log(conversations);
+
+  React.useEffect(() => {
+    scrollToBottom();
+  }, [state.messages]);
+
+  const handleMessageChange = (event) => {
+    dispatch({
+      type: ACTIONS.SET_NEW_MESSAGE,
+      payload: event.target.value,
+    });
+  };
+
+  const generateMessageId = () => {
+    return "m" + Math.random().toString(36).substr(2, 9);
+  };
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  const handleSendMessage = () => {
+    if (state.newMessage.trim() !== "") {
+      const messageId = generateMessageId();
+      const timestamp = new Date().toISOString();
+      const message = {
+        id: messageId,
+        text: state.newMessage,
+        createdAt: timestamp,
+        user: {
+          id: "u2",
+          name: "Lukas",
+        },
+      };
+      dispatch({
+        type: ACTIONS.SET_APPEND_MESSAGE,
+        payload: { id: conversations.id, message: message },
+      });
+    }
+  };
+  console.log(state.conversations.discussions);
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleSendMessage();
+    }
+  };
 
   const MessageBox = styled(Box)(({ theme }) => ({
     position: "relative",
@@ -40,6 +84,7 @@ const Chat = () => {
     borderRadius: "5px",
     maxWidth: "400px",
     width: "100%",
+    wordWrap: "break-word",
     "&::before": {
       content: '""',
       position: "absolute",
@@ -50,136 +95,116 @@ const Chat = () => {
   }));
 
   return (
-    <Box>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 1,
-          }}
-        >
-          <StyledBadge
-            overlap="circular"
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-            variant="dot"
+    <>
+      <Box>
+        <Toolbar>
+          <CardMedia
+            component="img"
+            image="/images/logo.png"
+            alt="Logo"
+            sx={{ width: 30 }}
+          />
+          <Typography
+            variant="h6"
+            sx={{ fontWeight: "bold", ml: 2, color: "grey.dark" }}
           >
-            <Avatar
-              src="/images/avatars/profile-avatar.png"
-              sx={{ width: "30px", height: "30px" }}
-            />
-          </StyledBadge>
+            Shoppy Ai
+          </Typography>
+        </Toolbar>
+      </Box>
 
-          <Box>
-            <Typography>Brian</Typography>
-            <Typography variant="subtitle2" sx={{ opacity: 0.8 }}>
-              Active now
-            </Typography>
-          </Box>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 1,
-          }}
-        >
-          <Tooltip title="Call">
-            <IconButton sx={{ fontSize: "17px", color: "text.primary" }}>
-              <FiPhoneCall />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title="Video">
-            <IconButton sx={{ fontSize: "17px", color: "text.primary" }}>
-              <FiVideo />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title="More">
-            <IconButton sx={{ fontSize: "17px", color: "text.primary" }}>
-              <FaEllipsisV />
-            </IconButton>
-          </Tooltip>
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Typography gutterBottom variant="subtitle2" sx={{ opacity: 0.8 }}>
-          Switch to Support Agent
-        </Typography>
-        <Switch />
-      </Box>
       <Divider />
+
       <Box
         sx={{
-          height: "50vh",
+          height: "80vh",
           overflow: "auto",
-          p: 1,
+          p: 3,
         }}
       >
-        {messages.map(({ id, text, user }) => (
-          <Box key={id}>
-            <Box
-              sx={{
-                display: "flex",
-
-                mt: 2,
-                justifyContent: user.id === "u1" ? "flex-start" : "flex-end",
-                gap: 2,
-              }}
-            >
-              <Avatar
-                src={`${
-                  user.id === "u1"
-                    ? "/images/avatars/profile-avatar.png"
-                    : "/images/avatars/avatar3.png"
-                }`}
-                sx={{
-                  width: "30px",
-                  height: "30px",
-                  order: user.id === "u2" && 2,
-                }}
-              />
-
-              <Box>
-                <MessageBox
+        {state.conversations?.discussions?.length > 0 ? (
+          state.conversations.discussions.map(
+            ({ id, text, user, createdAt }) => (
+              <Box key={id}>
+                <Box
                   sx={{
-                    backgroundColor: user.id === "u1" ? "#027edd" : "chatBox",
-                    color: user.id === "u1" && "#fff",
-                    "&::before": {
-                      backgroundColor: user.id === "u1" ? "#027edd" : "chatBox",
-                      transform: `rotate(45deg) ${
-                        user.id === "u1"
-                          ? "translateX(-7px)"
-                          : "translateX(7px)"
-                      } `,
-                      left: user.id === "u1" && 0,
-                      right: user.id === "u2" && 0,
-                      top: user.id === "u1" && "10px !important",
-                    },
+                    display: "flex",
+                    mt: 2,
+                    justifyContent:
+                      user.id === "u1" ? "flex-start" : "flex-end",
+                    gap: 2,
                   }}
                 >
-                  {text}
-                </MessageBox>
-                <Typography variant="subtitle2" sx={{ opacity: 0.8 }}>
-                  11:12 AM
-                </Typography>
+                  <Box
+                    sx={{
+                      width: "30px",
+                      height: "30px",
+                      order: user.id === "u2" && 2,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderRadius: "50%",
+                      backgroundColor: user.id === "u1" ? "#027edd" : "chatBox",
+                    }}
+                  >
+                    {user.id === "u1" ? <FaRobot /> : <FaUserTie />}
+                  </Box>
+
+                  <Box>
+                    <MessageBox
+                      sx={{
+                        backgroundColor:
+                          user.id === "u1" ? "#027edd" : "chatBox",
+                        color: user.id === "u1" && "#fff",
+                        "&::before": {
+                          backgroundColor:
+                            user.id === "u1" ? "#027edd" : "chatBox",
+                          transform: `rotate(45deg) ${
+                            user.id === "u1"
+                              ? "translateX(-7px)"
+                              : "translateX(7px)"
+                          } `,
+                          left: user.id === "u1" && 0,
+                          right: user.id === "u2" && 0,
+                          top: user.id === "u1" && "10px !important",
+                        },
+                      }}
+                    >
+                      {text}
+                    </MessageBox>
+                    <Typography variant="subtitle2" sx={{ opacity: 0.8 }}>
+                      {timestampFormatter(createdAt)}
+                    </Typography>
+                  </Box>
+                </Box>
               </Box>
-            </Box>
+            )
+          )
+        ) : (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+              mt: 8,
+              p: 1,
+              gap: 3,
+            }}
+          >
+            <CardMedia
+              component="img"
+              image="/images/logo.png"
+              alt="Logo"
+              sx={{ width: 70 }}
+            />
+            <Typography variant="h5">How can i help you Today?</Typography>
           </Box>
-        ))}
+        )}
+        <div ref={messagesEndRef} />
       </Box>
-      <Box sx={{ mt: 1 }}>
+
+      <Box sx={{ mt: 3, pb: 1 }}>
         <TextField
           id="input-with-icon-textfield"
           InputProps={{
@@ -191,7 +216,10 @@ const Chat = () => {
             endAdornment: (
               <InputAdornment position="end">
                 <Tooltip title="Send">
-                  <IconButton sx={{ fontSize: "17px", color: "text.primary" }}>
+                  <IconButton
+                    sx={{ fontSize: "17px", color: "text.primary" }}
+                    onClick={handleSendMessage}
+                  >
                     <FiSend />
                   </IconButton>
                 </Tooltip>
@@ -200,11 +228,15 @@ const Chat = () => {
           }}
           variant="outlined"
           fullWidth
+          sx={{ paddingX: "20px" }}
           size="small"
+          value={state.newMessage}
           placeholder="Enter a message"
+          onChange={handleMessageChange}
+          onKeyPress={handleKeyPress}
         />
       </Box>
-    </Box>
+    </>
   );
 };
 

@@ -1,34 +1,18 @@
 import * as React from "react";
 import { Outlet } from "react-router-dom";
 import { Box } from "@mui/material";
-import Sidebar from "../components/common/dashboard/Sidebar";
-import Navbar from "../components/common/dashboard/Navbar";
 
-const sideBarWidth = 250;
-
-function Dashboard() {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+const sideBarWidth = 300;
+const Dashboard = () => {
   return (
     <React.Fragment>
-      <Box sx={{ display: "flex" }}>
-        <Navbar
-          sideBarWidth={sideBarWidth}
-          handleDrawerToggle={handleDrawerToggle}
-        />
-        <Sidebar
-          sideBarWidth={sideBarWidth}
-          mobileOpen={mobileOpen}
-          handleDrawerToggle={handleDrawerToggle}
-        />
+      <Box>
         <Box
           component="main"
           sx={{
             flexGrow: 1,
-            px: { xs: 1, md: 2 },
+            position: "fixed",
+            left: "300px",
             width: { xs: "100%", md: `calc(100% - ${sideBarWidth}px)` },
           }}
         >
@@ -37,6 +21,6 @@ function Dashboard() {
       </Box>
     </React.Fragment>
   );
-}
+};
 
 export default Dashboard;
