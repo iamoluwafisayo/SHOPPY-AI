@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
 from flask_caching import Cache
 
-query_embeddings = __import__('embed.py').query_embeddings
-get_response = __import__('ai.py').get_response
+query_embeddings = __import__('embed').query_embeddings
+get_response = __import__('ai').get_response
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -22,19 +22,19 @@ def hello_world():
 def ask():
     chat = request.json["chat"]
     id = request.json["chatId"]
-    message = chat[-1]["message"]
+    message = chat[-1]["content"]
 
     messages = cache.get(id) or chat
 
     products = query_embeddings(message)
 
-    messages.append({"role": "user", "message": get_prompt(products, message)})
+    messages.append({"role": "user", "content": get_prompt(products, message)})
 
     response = get_response(messages)
     if response is None:
         return jsonify({"message": "An error occurred."})
     
-    messages.append({"role": "assistant", "message": response})
+    messages.append({"role": "assistant", "content": response})
     cache.set(id, messages)
 
     return jsonify({"message": response})
@@ -42,4 +42,4 @@ def ask():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=6000)
