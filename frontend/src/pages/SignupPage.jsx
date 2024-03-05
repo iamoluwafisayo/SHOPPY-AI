@@ -1,192 +1,282 @@
 import React from "react";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useForm } from "react-hook-form";
 import Alert from "../components/utils/Alert";
 import LoadingButton from "@mui/lab/LoadingButton";
 import {
-  Box,
-  Button,
-  TextField,
-  Link,
-  Typography,
-  Container,
-  CardMedia,
-  Chip,
-  Divider,
-  IconButton,
-  InputAdornment,
+    Box,
+    Button,
+    TextField,
+    Link,
+    Typography,
+    Container,
+    CardMedia,
+    Chip,
+    Divider,
+    IconButton,
+    InputAdornment,
 } from "@mui/material";
 import {
-  emailValidator,
-  passwordValidator,
-  nameValidator,
+    emailValidator,
+    passwordValidator,
+    nameValidator,
 } from "../components/utils/validators";
+import { BASE_URL } from "../App";
 
 const SignUp = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const [showPassword, setShowPassword] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+    const [firstName, setFirstName] = React.useState("");
+    const [lastName, setLastName] = React.useState("");
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
+    const [confirmPassword, setConfirmPassword] = React.useState("");
+    const [showPassword, setShowPassword] = React.useState(false);
+    const [loading, setLoading] = React.useState(false);
 
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const onSubmit = async (data) => {
-    setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setLoading(false);
+    const onSubmit = async (data) => {
+        setLoading(true);
+        try {
+            const response = await axios.post(`${BASE_URL}signup`, {
+                firstname: firstName,
+                lastname: lastName,
+                email: email,
+                password: password,
+            });
+            if (response.status === 201) {
+                toast.success("Account created successfully!");
+                setLoading(false);
+                window.location.href = "/auth/signin/";
+            }
+        } catch (error) {
+            setLoading(false);
+            if (error.response) {
+                toast.error(error.response.data.detail);
+            } else {
+                toast.error("An error occurred. Please try again later.");
+            }
+        }
+    };
 
-    console.log({
-      data,
-    });
-  };
-
-  return (
-    <Container
-      maxWidth="xl"
-      sx={{
-        display: "flex",
-        minHeight: "100vh",
-        alignItems: "center",
-        justifyContent: "center",
-        position: "relative",
-      }}
-    >
-      <Box
-        sx={{
-          position: "absolute",
-          left: 0,
-          bottom: 0,
-          maxWidth: 358,
-          display: { xs: "none", md: "block" },
-        }}
-      >
-        <CardMedia
-          component="img"
-          image="/images/img1.png"
-          alt="Image"
-          sx={{
-            height: "100%",
-            objectFit: "cover",
-          }}
-        />
-      </Box>
-      <Box
-        sx={{
-          zIndex: 2,
-          width: "100%",
-          maxWidth: "400px",
-          padding: "6px",
-          textAlign: "center",
-        }}
-      >
-        {/* Sign up heading */}
-        <Typography
-          variant="h5"
-          sx={{ fontSize: "40px", fontWeight: "bold", color: "blue" }}
-        >
-          Sign Up
-        </Typography>
-        <Typography component="h1">Welcome!👏 let's get started</Typography>
-        <Box
-          component="form"
-          onSubmit={handleSubmit(onSubmit)}
-          sx={{ mt: 1, padding: "6px", width: "400px" }}
-        >
-          <TextField
-            margin="normal"
-            fullWidth
-            {...register("name", nameValidator)}
-            error={!!errors.name}
-            helperText={!!errors.name ? errors.name.message : ""}
-            label="Enter Name"
-            autoFocus
-          />
-          <TextField
-            margin="normal"
-            fullWidth
-            {...register("email", emailValidator)}
-            error={!!errors.email}
-            helperText={!!errors.email ? errors.email.message : ""}
-            label="Email Address"
-            autoComplete="email"
-          />
-          {/* Render password input field */}
-          <TextField
-            margin="normal"
-            type={showPassword ? "text" : "password"}
-            label="Password"
-            {...register("password", passwordValidator)}
-            error={!!errors.password}
-            helperText={errors.password ? errors.password.message : ""}
-            fullWidth
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    edge="end"
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              ),
+    return (
+        <Container
+            maxWidth="xl"
+            sx={{
+                display: "flex",
+                minHeight: "100vh",
+                alignItems: "center",
+                justifyContent: "center",
+                position: "relative",
             }}
-          />
-
-          {/* Sign up button */}
-          <LoadingButton
-            variant="contained"
-            type="submit"
-            loading={loading}
-            loadingPosition="end"
-            fullWidth
-            sx={{ mt: 2, mb: 3, borderRadius: "20px", padding: ".6rem 6rem" }}
-          >
-            {loading ? "Signing up..." : "Sign Up"}
-          </LoadingButton>
-
-          <Typography component="h1">
-            Already have an account?
-            <Link href="/auth/signin/" variant="body2">
-              Sign In
-            </Link>
-          </Typography>
-          <Typography
-            component="h6"
-            sx={{ fontSize: ".8rem", marginBottom: "20px" }}
-          >
-            <Divider sx={{ marginY: 2 }}>
-              <Chip label="OR" size="small" />
-            </Divider>
-            <Alert
-              button={
-                <Button
-                  variant="outlined"
-                  tabIndex={-1}
-                  sx={{ borderRadius: "24px", marginY: 2 }}
-                  startIcon={
-                    <CardMedia
-                      component="img"
-                      image="/images/google.png"
-                      alt="Image"
-                      sx={{ width: 24, height: 24 }}
-                    />
-                  }
+        >
+            <Box
+                sx={{
+                    position: "absolute",
+                    left: 0,
+                    bottom: 0,
+                    maxWidth: 358,
+                    display: { xs: "none", md: "block" },
+                }}
+            >
+                <CardMedia
+                    component="img"
+                    image="/images/img1.png"
+                    alt="Image"
+                    sx={{
+                        height: "100%",
+                        objectFit: "cover",
+                    }}
+                />
+            </Box>
+            <Box
+                sx={{
+                    zIndex: 2,
+                    width: "100%",
+                    maxWidth: "400px",
+                    padding: "6px",
+                    textAlign: "center",
+                }}
+            >
+                {/* Sign up heading */}
+                <Typography
+                    variant="h5"
+                    sx={{ fontSize: "40px", fontWeight: "bold", color: "blue" }}
                 >
-                  Sign up with Google
-                </Button>
-              }
-              message="Sign up with Google Coming Soon"
-            />
-          </Typography>
-        </Box>
-      </Box>
-    </Container>
-  );
+                    Sign Up
+                </Typography>
+                <Typography component="h1">
+                    Welcome!👏 let's get started
+                </Typography>
+                <Box
+                    component="form"
+                    onSubmit={handleSubmit(onSubmit)}
+                    sx={{ mt: 1, padding: "6px", width: "400px" }}
+                >
+                    <TextField
+                        margin="normal"
+                        fullWidth
+                        {...register("name", nameValidator)}
+                        error={!!errors.name}
+                        helperText={!!errors.name ? errors.name.message : ""}
+                        label="First Name"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        autoFocus
+                    />
+
+                    <TextField
+                        margin="normal"
+                        fullWidth
+                        {...register("name", nameValidator)}
+                        error={!!errors.name}
+                        helperText={!!errors.name ? errors.name.message : ""}
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        label="Last Name"
+                    />
+
+                    <TextField
+                        margin="normal"
+                        fullWidth
+                        {...register("email", emailValidator)}
+                        error={!!errors.email}
+                        helperText={!!errors.email ? errors.email.message : ""}
+                        label="Email Address"
+                        autoComplete="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    {/* Render password input field */}
+                    <TextField
+                        margin="normal"
+                        type={showPassword ? "text" : "password"}
+                        label="Password"
+                        {...register("password", passwordValidator)}
+                        error={!!errors.password}
+                        helperText={
+                            errors.password ? errors.password.message : ""
+                        }
+                        fullWidth
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={handleClickShowPassword}
+                                        edge="end"
+                                    >
+                                        {showPassword ? (
+                                            <VisibilityOff />
+                                        ) : (
+                                            <Visibility />
+                                        )}
+                                    </IconButton>
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+
+                    <TextField
+                        margin="normal"
+                        type={showPassword ? "text" : "password"}
+                        label="Confirm Password"
+                        {...register("confirmPassword", {
+                            validate: (value) =>
+                                value === password || "Passwords do not match",
+                        })}
+                        error={!!errors.confirmPassword}
+                        helperText={
+                            errors.confirmPassword
+                                ? errors.confirmPassword.message
+                                : ""
+                        }
+                        fullWidth
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={handleClickShowPassword}
+                                        edge="end"
+                                    >
+                                        {showPassword ? (
+                                            <VisibilityOff />
+                                        ) : (
+                                            <Visibility />
+                                        )}
+                                    </IconButton>
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+
+                    {/* Sign up button */}
+                    <LoadingButton
+                        variant="contained"
+                        type="submit"
+                        loading={loading}
+                        loadingPosition="end"
+                        fullWidth
+                        sx={{
+                            mt: 2,
+                            mb: 3,
+                            borderRadius: "20px",
+                            padding: ".6rem 6rem",
+                        }}
+                    >
+                        {loading ? "Signing up..." : "Sign Up"}
+                    </LoadingButton>
+
+                    <Typography component="h1">
+                        Already have an account?
+                        <Link href="/auth/signin/" variant="body2">
+                            Sign In
+                        </Link>
+                    </Typography>
+                    <Typography
+                        component="h6"
+                        sx={{ fontSize: ".8rem", marginBottom: "20px" }}
+                    >
+                        <Divider sx={{ marginY: 2 }}>
+                            <Chip label="OR" size="small" />
+                        </Divider>
+                        <Alert
+                            button={
+                                <Button
+                                    variant="outlined"
+                                    tabIndex={-1}
+                                    sx={{ borderRadius: "24px", marginY: 2 }}
+                                    startIcon={
+                                        <CardMedia
+                                            component="img"
+                                            image="/images/google.png"
+                                            alt="Image"
+                                            sx={{ width: 24, height: 24 }}
+                                        />
+                                    }
+                                >
+                                    Sign up with Google
+                                </Button>
+                            }
+                            message="Sign up with Google Coming Soon"
+                        />
+                    </Typography>
+                </Box>
+            </Box>
+            <Toaster />
+        </Container>
+    );
 };
 
 export default SignUp;
