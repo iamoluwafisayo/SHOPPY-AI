@@ -367,7 +367,7 @@ def query_embeddings(query):
 
     results = products_collection.query(
         query_embeddings=converted_query,
-        n_results=10,
+        n_results=5,
     )
 
     documents = []
@@ -375,7 +375,6 @@ def query_embeddings(query):
     for document in results["documents"][0]:
         documents.append(json.loads(document))
 
-    print(documents)
 
     products = []
     [products.append(item) for item in documents if item not in products]
