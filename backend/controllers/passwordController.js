@@ -10,10 +10,11 @@ const mailService = process.env.MAIL_SERVICE
 const pass = process.env.PASSWORD
 
 function generateEmailMessage(otp, email, firstname, expiration_time = 1) {
+    const maskEmail = maskedEmail(email)
     const message = `
     Hello ${firstname},
 
-    Here is your OTP code: ${otp} to reset your shopyai password for your ${email} account. 
+Here is your OTP code: ${otp} to reset your shopyai password for the account:    ${maskEmail} . 
     Please note that this code will expire in ${expiration_time} minutes.
     If you have not requested to reset your password, you can ignore this e-mail.
     Thank you for your understanding,
@@ -67,7 +68,7 @@ export default class PasswordController {
                 const mailOption = {
                     from: adminEmail,
                     to: userEmail,
-                    subject: "Password reset",
+                    subject: "(ShoppyAi) - Password reset",
                     text: generateEmailMessage(otp, userEmail, firstname).toString()
                     
                 }
