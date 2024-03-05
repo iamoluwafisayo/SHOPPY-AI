@@ -10,7 +10,7 @@ export default class UserController {
             const user = req.body;
             try {
                 await dbClient.newUser(user);
-                res.status(201).json({ message: "Registred" });
+                res.status(201).json({ message: "Registered" });
             } catch (err) {
                 if (err.code === 11000) {
                     res.status(400).json({ error: "User already exists" });

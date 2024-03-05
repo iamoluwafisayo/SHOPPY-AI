@@ -5,8 +5,8 @@ import sha1 from "sha1";
 dotenv.config();
 const DB_HOST = process.env.DB_HOST || "localhost";
 const DB_PORT = process.env.DB_PORT || "27017";
-const DB_URL = `mongodb://${DB_HOST}:${DB_PORT}/my_db`;
-const DB = process.env.DB_NAME || "files_manager";
+const DB_URL = `mongodb://${DB_HOST}:${DB_PORT}/`;
+const DB = process.env.DB_NAME || "shoppy";
 
 class DBClient {
     constructor() {
@@ -18,6 +18,7 @@ class DBClient {
                     console.error(err);
                     this.db = false;
                 } else {
+                    console.log("Connected to MongoDB");
                     this.db = client.db(DB);
                     this.usersCollection = this.db.collection("users");
                     this.messagesCollection = this.db.collection("messages");
@@ -128,7 +129,6 @@ class DBClient {
             .find({}, { sort: { updatedAt: -1 } })
             .toArray();
         return result;
-    
     }
 }
 
