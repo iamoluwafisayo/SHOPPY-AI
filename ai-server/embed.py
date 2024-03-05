@@ -12,7 +12,289 @@
 # {"url": "https://www.amazon.co.uk/dp/B07SZ79Q2S", "title": "Reebok Women's Classic Leather Sneaker, Black/neon red/Black", "asin": "B07SZ79Q2S", "price": "\u00a354.83 - \u00a3158.83", "brand": "Visit the Reebok Store", "product_details": "Package Dimensions\n\u200f\n:\n\u200e\n\n25.9 x 18.28 x 9.39 cm; 612 Grams\n\n\nDate First Available\n\u200f\n:\n\u200e\n\n13 Jun. 2019\n\n\nManufacturer\n\u200f\n:\n\u200e\n\nReebok\n\n\nASIN\n\u200f\n:\n\u200e\n\nB07SZ771ZM\n\n\nItem model number\n\u200f\n:\n\u200e\n\nHJ526\n\n\nDepartment\n\u200f\n:\n\u200e\n\nWomen's", "breadcrumbs": "Shoes/Women's Shoes/Fashion & Athletic Trainers/Fashion Trainers", "images_list": ["https://m.media-amazon.com/images/I/31wfSlsmC+L.jpg", "https://m.media-amazon.com/images/I/41c6a7YjeAL.jpg", "https://m.media-amazon.com/images/I/31WAcWPELxL.jpg", "https://m.media-amazon.com/images/I/312ry+LEKKL.jpg", "https://m.media-amazon.com/images/I/31OOSGicfNL.jpg", "https://m.media-amazon.com/images/I/31tGBJWzi8L.jpg", "https://m.media-amazon.com/images/I/41RuGnad6TL.jpg"], "features": [{"Outer Material": "Leather"}, {"Sole": "Rubber"}, {"Closure": "Lace-Up"}, {"Heel Type": "low-heel"}, {"Shoe Width": "M"}]},
 # {"url": "https://www.amazon.co.uk/dp/B07Z5R6BML", "title": "ECCO Men's Soft 7 Wallaby Sneaker", "asin": "B07Z5R6BML", "price": "\u00a359.79 - \u00a3304.93", "brand": "Visit the ECCO Store", "product_details": "Package Dimensions\n\u200f\n:\n\u200e\n\n35.56 x 19.05 x 12.44 cm; 413.9 Grams\n\n\nDate First Available\n\u200f\n:\n\u200e\n\n19 July 2019\n\n\nManufacturer\n\u200f\n:\n\u200e\n\nEcco\n\n\nASIN\n\u200f\n:\n\u200e\n\nB07V9PH3LM\n\n\nItem model number\n\u200f\n:\n\u200e\n\n47005451952\n\n\nDepartment\n\u200f\n:\n\u200e\n\nMen's", "breadcrumbs": "Shoes/Men's Shoes/Fashion & Athletic Trainers/Fashion Trainers", "images_list": ["https://m.media-amazon.com/images/I/314wBUmde-L.jpg", "https://m.media-amazon.com/images/I/31uEgg9nHjL.jpg", "https://m.media-amazon.com/images/I/31vDRgo4PhL.jpg", "https://m.media-amazon.com/images/I/31bWUnzMZ5L.jpg", "https://m.media-amazon.com/images/I/31cZHGlWN8L.jpg", "https://m.media-amazon.com/images/I/3120VP1YisL.jpg", "https://m.media-amazon.com/images/I/31uPTp6hAUL.jpg"], "features": [{"Outer Material": "Leather"}, {"Inner Material": "Textile"}, {"Sole": "Rubber"}, {"Closure": "Lace-Up"}, {"Material Composition": "Real leather and textile"}, {"Shoe Width": "Schmal"}]},
 # {"url": "https://www.amazon.co.uk/dp/B08QVH5BFD", "title": "Rocket Dog Women's Waltsc-245 Sneaker", "asin": "B08QVH5BFD", "price": "\u00a335.57 - \u00a342.59", "brand": "Visit the Rocket Dog Store", "product_details": "Product Dimensions\n\u200f\n:\n\u200e\n\n30.23 x 18.29 x 10.41 cm; 345.86 Grams\n\n\nDate First Available\n\u200f\n:\n\u200e\n\n31 Dec. 2020\n\n\nManufacturer\n\u200f\n:\n\u200e\n\nRocket Dog\n\n\nASIN\n\u200f\n:\n\u200e\n\nB08QTM1ZYD\n\n\nItem model number\n\u200f\n:\n\u200e\n\nWALTSC\n\n\nDepartment\n\u200f\n:\n\u200e\n\nWomen's", "breadcrumbs": "Shoes/Women's Shoes/Fashion & Athletic Trainers/Fashion Trainers", "images_list": ["https://m.media-amazon.com/images/I/417RL4pjGvL.jpg", "https://m.media-amazon.com/images/I/41UWhsSQUXL.jpg", "https://m.media-amazon.com/images/I/41myKe3F6RL.jpg", "https://m.media-amazon.com/images/I/31reHJn4fLL.jpg", "https://m.media-amazon.com/images/I/31h+7KwVyYL.jpg", "https://m.media-amazon.com/images/I/417McdPeU5L.jpg", "https://m.media-amazon.com/images/I/41dWVsjVOML.jpg"], "features": [{"Outer Material": "Cotton"}, {"Sole": "100% Synthetic"}, {"Closure": "Lace-Up"}, {"Heel Type": "No Heel"}, {"Shoe Width": "Medium"}]},
+
+
 # {"url": "https://www.amazon.co.uk/dp/B07RWMW8M6", "title": "adidas Men's Bd7611 Track Shoe", "asin": "B07RWMW8M6", "price": "\u00a364.99 - \u00a3124.00", "brand": "Visit the adidas Store", "product_details": "Is Discontinued By Manufacturer\n\u200f\n:\n\u200e\n\nNo\n\n\nPackage Dimensions\n\u200f\n:\n\u200e\n\n30 x 30 x 10 cm; 1.5 Kilograms\n\n\nDate First Available\n\u200f\n:\n\u200e\n\n15 May 2019\n\n\nManufacturer\n\u200f\n:\n\u200e\n\nadidas\n\n\nASIN\n\u200f\n:\n\u200e\n\nB07RVCGGHC\n\n\nItem model number\n\u200f\n:\n\u200e\n\nEE5711\n\n\nDepartment\n\u200f\n:\n\u200e\n\nMen's", "breadcrumbs": "", "images_list": ["https://m.media-amazon.com/images/I/41TJkbth7pL.jpg", "https://m.media-amazon.com/images/I/416OSKDJwML.jpg", "https://m.media-amazon.com/images/I/31uvtYgkbEL.jpg"], "features": [{"Outer Material": "Patent Leather"}, {"Sole": "Rubber"}, {"Closure": "Lace-Up"}, {"Heel Height": "3 centimetres"}, {"Heel Type": "Flat"}, {"Shoe Width": "Medium"}]},
+
+
+# or 
+
+# {
+#         "url": "https://www.carvana.com/vehicle/2004275",
+#         "vehicle_id": 2004275,
+#         "maker": "Honda",
+#         "model": "Civic",
+#         "price": 15590,
+#         "year": 2013,
+#         "body_style": "Sedan",
+#         "body_type": "Sedan",
+#         "sale_status": "Available",
+#         "mileage": 70056,
+#         "trim": "LX Sedan 4D",
+#         "location": {
+#             "addressLine1": "63 Pierce Rd",
+#             "city": "Winder",
+#             "stateAbbreviation": "GA",
+#             "zip5": "30680"
+#         },
+#         "details": {
+#             "basics": {
+#                 "mpgCity": 28,
+#                 "mpgHighway": 39,
+#                 "engineCylinderCount": 4,
+#                 "engineDescription": "4-Cyl, i-VTEC, 1.8 Liter",
+#                 "engineHorsepower": 140,
+#                 "engineTorque": 128,
+#                 "fuelDescription": "Gas",
+#                 "driveTrainDescription": "FWD",
+#                 "exteriorColor": "Burgundy",
+#                 "interiorColor": "BEIGE",
+#                 "exteriorRGB": { "red": 128, "green": 0, "blue": 0 },
+#                 "interiorRGB": { "red": 245, "green": 245, "blue": 220 },
+#                 "transmission": "Automatic, 5-Spd",
+#                 "numberOfKeys": 1,
+#                 "doors": 4,
+#                 "seating": "5",
+#                 "vin": "19XFB2F55DE077575",
+#                 "stockNumber": 2001202860,
+#                 "poseData": {
+#                     "installedPackages": [],
+#                     "installedOptions": [],
+#                     "installedOptionsData": [],
+#                     "standardEquipment": []
+#                 },
+#                 "curbWeight": 2815,
+#                 "msrp": 19755,
+#                 "kbbVehicleID": 383086,
+#                 "wheelSize": 15,
+#                 "engineDisplacement": 0
+#             },
+#             "facets": [
+#                 { "facetId": 5, "facetName": "Rear View Camera" },
+#                 { "facetId": 10, "facetName": "Hands Free Calling" },
+#                 { "facetId": 25, "facetName": "Alloy Wheels" }
+#             ],
+#             "KBBData": [
+#                 {
+#                     "label": "Braking and Traction",
+#                     "feature": [
+#                         {
+#                             "label": "Braking and Traction",
+#                             "displayName": "Traction Control",
+#                             "isValuable": false,
+#                             "isRare": false,
+#                             "kbbOptionId": 5213519
+#                         },
+#                         {
+#                             "label": "Braking and Traction",
+#                             "displayName": "Stability Control",
+#                             "isValuable": false,
+#                             "isRare": false,
+#                             "kbbOptionId": 5213524
+#                         },
+#                         {
+#                             "label": "Braking and Traction",
+#                             "displayName": "ABS (4-Wheel)",
+#                             "isValuable": false,
+#                             "isRare": false,
+#                             "kbbOptionId": 5213525
+#                         }
+#                     ]
+#                 },
+#                 {
+#                     "label": "Comfort and Convenience",
+#                     "feature": [
+#                         {
+#                             "label": "Comfort and Convenience",
+#                             "displayName": "Keyless Entry",
+#                             "isValuable": false,
+#                             "isRare": false,
+#                             "kbbOptionId": 5213528
+#                         },
+#                         {
+#                             "label": "Comfort and Convenience",
+#                             "displayName": "Air Conditioning",
+#                             "isValuable": false,
+#                             "isRare": false,
+#                             "kbbOptionId": 5213532
+#                         },
+#                         {
+#                             "label": "Comfort and Convenience",
+#                             "displayName": "Power Windows",
+#                             "isValuable": false,
+#                             "isRare": false,
+#                             "kbbOptionId": 5213535
+#                         },
+#                         {
+#                             "label": "Comfort and Convenience",
+#                             "displayName": "Power Door Locks",
+#                             "isValuable": false,
+#                             "isRare": false,
+#                             "kbbOptionId": 5213538
+#                         },
+#                         {
+#                             "label": "Comfort and Convenience",
+#                             "displayName": "Cruise Control",
+#                             "isValuable": false,
+#                             "isRare": false,
+#                             "kbbOptionId": 5213542
+#                         },
+#                         {
+#                             "label": "Comfort and Convenience",
+#                             "displayName": "Alarm System",
+#                             "isValuable": false,
+#                             "isRare": false,
+#                             "kbbOptionId": 7369646
+#                         }
+#                     ]
+#                 },
+#                 {
+#                     "label": "Steering",
+#                     "feature": [
+#                         {
+#                             "label": "Steering",
+#                             "displayName": "Tilt & Telescoping Wheel",
+#                             "isValuable": false,
+#                             "isRare": false,
+#                             "kbbOptionId": 5213546
+#                         },
+#                         {
+#                             "label": "Steering",
+#                             "displayName": "Power Steering",
+#                             "isValuable": false,
+#                             "isRare": false,
+#                             "kbbOptionId": 5213608
+#                         }
+#                     ]
+#                 },
+#                 {
+#                     "label": "Entertainment and Instrumentation",
+#                     "feature": [
+#                         {
+#                             "label": "Entertainment and Instrumentation",
+#                             "displayName": "AM/FM Stereo",
+#                             "isValuable": false,
+#                             "isRare": false,
+#                             "kbbOptionId": 5213548
+#                         },
+#                         {
+#                             "label": "Entertainment and Instrumentation",
+#                             "displayName": "CD/MP3 (Single Disc)",
+#                             "isValuable": false,
+#                             "isRare": false,
+#                             "kbbOptionId": 5213550
+#                         },
+#                         {
+#                             "label": "Entertainment and Instrumentation",
+#                             "displayName": "Bluetooth Wireless",
+#                             "isValuable": false,
+#                             "isRare": false,
+#                             "kbbOptionId": 5213552
+#                         }
+#                     ]
+#                 },
+#                 {
+#                     "label": "Safety and Security",
+#                     "feature": [
+#                         {
+#                             "label": "Safety and Security",
+#                             "displayName": "Backup Camera",
+#                             "isValuable": false,
+#                             "isRare": false,
+#                             "kbbOptionId": 5213556
+#                         },
+#                         {
+#                             "label": "Safety and Security",
+#                             "displayName": "Dual Air Bags",
+#                             "isValuable": false,
+#                             "isRare": false,
+#                             "kbbOptionId": 5213560
+#                         },
+#                         {
+#                             "label": "Safety and Security",
+#                             "displayName": "Side Air Bags",
+#                             "isValuable": false,
+#                             "isRare": false,
+#                             "kbbOptionId": 5213563
+#                         },
+#                         {
+#                             "label": "Safety and Security",
+#                             "displayName": "F&R Head Curtain Air Bags",
+#                             "isValuable": false,
+#                             "isRare": false,
+#                             "kbbOptionId": 5213566
+#                         }
+#                     ]
+#                 },
+#                 {
+#                     "label": "Lighting",
+#                     "feature": [
+#                         {
+#                             "label": "Lighting",
+#                             "displayName": "Daytime Running Lights",
+#                             "isValuable": false,
+#                             "isRare": false,
+#                             "kbbOptionId": 5213569
+#                         }
+#                     ]
+#                 },
+#                 {
+#                     "label": "Wheels and Tires",
+#                     "feature": [
+#                         {
+#                             "label": "Wheels and Tires",
+#                             "displayName": "Steel Wheels",
+#                             "isValuable": false,
+#                             "isRare": true,
+#                             "kbbOptionId": 5213572
+#                         }
+#                     ]
+#                 }
+#             ],
+#             "warranty": {
+#                 "manufacturerBasicWarrantyMonths": 36,
+#                 "manufacturerBasicWarrantyMiles": 36000,
+#                 "manufacturerDriveTrainWarrantyMonths": 60,
+#                 "manufacturerDriveTrainWarrantyMiles": 60000,
+#                 "inServiceDate": "2013-10-25T00:00:00Z",
+#                 "remainingWarrantyMonths": 0,
+#                 "remainingWarrantyMiles": 0,
+#                 "remainingDriveTrainWarrantyMonths": 0,
+#                 "remainingDriveTrainWarrantyMiles": 0,
+#                 "inServiceMiles": 24
+#             }
+#         },
+#         "highlights": [
+#             {
+#                 "tagId": 21,
+#                 "tagCategoryId": 1,
+#                 "tagKey": "AccidentFree",
+#                 "tagName": "Accident Free",
+#                 "tagDescription": "Like every Carvana vehicle, this vehicle has never been in a reported accident.",
+#                 "sortOrder": 10,
+#                 "isResultTileDisplayable": false,
+#                 "isVdpDisplayable": true
+#             }
+#         ],
+#         "images": [
+#             "https://vexgateway.fastly.carvana.io/vex-613277/details/feature-10392882.jpg?v=1633540202.618",
+#             "https://vexgateway.fastly.carvana.io/vex-613277/details/feature-10392883.jpg?v=1633540202.618",
+#             null,
+#             "https://vexgateway.fastly.carvana.io/vex-613277/details/feature-10392885.jpg?v=1633540202.618",
+#             "https://vexgateway.fastly.carvana.io/vex-613277/details/feature-10392886.jpg?v=1633540202.618",
+#             "https://vexgateway.fastly.carvana.io/vex-613277/details/feature-10392887.jpg?v=1633540202.618",
+#             null,
+#             "https://vexgateway.fastly.carvana.io/vex-613277/details/feature-10392889.jpg?v=1633540202.618",
+#             "https://vexgateway.fastly.carvana.io/vex-613277/details/feature-10392890.jpg?v=1633540202.618",
+#             "https://vexgateway.fastly.carvana.io/vex-613277/details/feature-10392891.jpg?v=1633540202.618",
+#             "https://vexgateway.fastly.carvana.io/vex-613277/details/feature-10392892.jpg?v=1633540202.618",
+#             "https://vexgateway.fastly.carvana.io/vex-613277/details/feature-10392893.jpg?v=1633540202.618",
+#             null,
+#             "https://vexgateway.fastly.carvana.io/vex-613277/details/feature-10392895.jpg?v=1633540202.618",
+#             "https://vexgateway.fastly.carvana.io/vex-613277/details/feature-10392896.jpg?v=1633540202.618"
+#         ],
+#         "scraped_at": "2021-10-09 13:38:41"
+#     },
 
 
 
@@ -24,7 +306,7 @@ from chromadb.utils.embedding_functions import OpenAIEmbeddingFunction
 
 
 
-chroma_client = chromadb.PersistentClient(path="./chromaDB")
+chroma_client = chromadb.PersistentClient(path="./products.db")
 EMBEDDING_MODEL = "text-embedding-3-small"
 embedding_function = OpenAIEmbeddingFunction(api_key=os.getenv("OPENAI_API_KEY"), model_name=EMBEDDING_MODEL)
 
@@ -38,7 +320,7 @@ else:
 
 def embed_data():
     # Load data from file
-    with open("amazon_shoes.json", "r") as f:
+    with open("products.json", "r") as f:
         data = json.load(f)
     
     id = 0
@@ -46,15 +328,29 @@ def embed_data():
     # Embed data
     products_collection = chroma_client.create_collection(name="products", embedding_function=embedding_function)
 
+    # products_collection = chroma_client.get_collection(name="products", embedding_function=embedding_function)
+
     for item in data:
         # Store data in chromaDB
         # describe the prodoct in a paragraph and store in product info
-        product_info = f"Product: {item['title']}, Brand: {item['brand']}, Price: {item['price']}, Breadcrumbs: {item['breadcrumbs']} product details: {item['product_details']}"
-        embeddings = embedding_function(product_info)
+        if item["url"].startswith("https://www.amazon.co.uk"):
+            product_info = f"Product(Foot wear): {item['title']}, Brand: {item['brand']}, Price: {item['price']}, Breadcrumbs: {item['breadcrumbs']} product details: {item['product_details']}"
+        else:
+            # only use top 5 most important details in the details field like engine details, color, higlights, and labels use the exact field no objct should be passed
+            product_info = f"Product(Car or Vehicle): {item['maker']} {item['model']}, Price: {item['price']}, Year: {item['year']}, Body Style: {item['body_style']}, Body Type: {item['body_type']}, Mileage: {item['mileage']}, Trim: {item['trim']}, Engine Cylinder count: {item['details']['basics']['engineCylinderCount']}, Engine Description: {item['details']['basics']['engineDescription']}, Engine Horsepower: {item['details']['basics']['engineHorsepower']}, Engine Torque: {item['details']['basics']['engineTorque']}"
+            
+            # # for each label add the label and the display name and the is valuable and is rare fields
+            for facet in item["details"]["facets"]:
+                product_info += f", Facet: {facet['facetName']}"
+            for label in item["details"]["KBBData"]:
+                for feature in label["feature"]:
+                    product_info += f", Label: {label['label']}, Feature: {feature['displayName']}"
+        embeddings = embedding_function(json.dumps(product_info))
+        metadata = {"product": item["title"]} if item["url"].startswith("https://www.amazon.co.uk") else {"product": f"{item['maker']} {item['model']}"}
         products_collection.add(
             ids= [str(id + i) for i in range(len(embeddings))],
             embeddings=embeddings,
-            metadatas=[{"product": item["title"]} for _ in range(len(embeddings))],
+            metadatas=[metadata for _ in range(len(embeddings))],
             documents=[json.dumps(item)] * len(embeddings)
         )
 
