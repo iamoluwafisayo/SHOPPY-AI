@@ -14,17 +14,18 @@ function generateEmailMessage(otp, email, firstname, expiration_time = 1) {
     const message = `
     Hello ${firstname},
 
-Here is your OTP code: ${otp} to reset your shopyai password for the account:    ${maskEmail} . 
+    Here is your OTP code: ${otp} to reset your shopyai password for the account:    ${maskEmail} . 
     Please note that this code will expire in ${expiration_time} minutes.
     If you have not requested to reset your password, you can ignore this e-mail.
     Thank you for your understanding,
     
-    Your ShoppyAi team,`
+    Your ShoppyAi team,
+    `
 
     return message
 }
 function generateOTP() {
-    return Math.floor(1000 + Math.random() * 9000);
+    return Math.floor(100000 + Math.random() * 900000);
 }
 function maskedEmail(email) {
     const id = email.indexOf('@') - 1;
@@ -79,7 +80,7 @@ export default class PasswordController {
                         return res.status(500).json({ error: "Failed to send email" });
                     } else {
                         const emailMasked = maskedEmail(userEmail).toString()
-                        const message = `We have sent an email to ${emailMasked} with the OTP code`
+                        const message = `Enter OTP sent to ${emailMasked}`
                         res.status(200).json({message})
                     }
                 } )
