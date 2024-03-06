@@ -85,8 +85,6 @@ class DBClient {
     }
 
     async findChats(userId) {
-        // get all the chats for the user return an array of objects containing the chatId and first message in each chat
-
         const result = await this.messagesCollection
             .aggregate([
                 { $match: { userId } },
@@ -96,6 +94,7 @@ class DBClient {
                         title: { $first: "$content" },
                     },
                 },
+                { $sort: { updatedAt: -1 } },
             ])
             .toArray();
 
