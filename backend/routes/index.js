@@ -41,13 +41,21 @@ export default function routes(app) {
     app.post("/api/user/send_message", verifyToken, (req, res) => {
         MessageController.sendMessage(req, res);
     });
-    app.get("/api/messages", verifyToken, (req, res) => {
-        MessageController.getMessages(req, res);
+    // app.get("/api/messages", verifyToken, (req, res) => {
+    //     MessageController.getMessages(req, res);
+    // });
+
+    app.get("/api/user/chats", verifyToken, (req, res) => {
+        MessageController.getUserChats(req, res);
+    });
+
+    app.get("/api/user/chat/:chatId", verifyToken, (req, res) => {
+        MessageController.getChat(req, res);
     });
     app.post("/api/contact_us", (req, res) => {
         ContactsUsController.contactUs(req, res);
     });
-    
+
     app.get("/api/contact_us", (req, res) => {
         ContactsUsController.getContacts(req, res);
     });

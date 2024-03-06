@@ -84,12 +84,30 @@ class DBClient {
             .toArray();
     }
 
+    async findChats(userId) {
+        // get all the chats for the user return an array of objects containing the chatId and first message in each chat
+
+        const result = await this.messagesCollection
+            .aggregate([
+                { $match: { userId } },
+                {
+                    $group: {
+                        _id: "$chatId",
+                        title: { $first: "$content" },
+                    },
+                },
+            ])
+            .toArray();
+
+        return result;
+    }
+
     async getChat(chatId) {
         // return only the message and role fields of each message object that has the chatId
 
         const result = await this.messagesCollection
             .find({ chatId })
-            .project({ message: 1, role: 1, _id: 0 })
+            .project({ content: 1, role: 1, _id: 0 })
             .toArray();
 
         return result;

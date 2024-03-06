@@ -5,14 +5,35 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
 export default class MessageController {
-    static async getMessages(req, res) {
+    static async getUserChats(req, res) {
+        const userId = req.user._id;
+
         try {
-            const messages = await getMessages();
+            const chats = await dbClient.findChats(userId);
+            res.status(200).send(chats);
         } catch (error) {
             console.log(error);
+            res.status(500).json({ error: "Server Error" });
+        }
+    }
+
+    static async getChat(req, res) {
+        const { chatId } = req.params;
+
+        if (chatId === "new") {
+            return res.status(200).json({ chat: [] });
+        }
+
+        try {
+            const chat = await dbClient.getChat(chatId);
+            res.status(200).json({ chat });
+        } catch (err) {
+            console.log(err);
+            res.status(500).json({ error: "Server Error" });
         }
     }
     static async sendMessage(req, res) {
+        // console.log(req.user);
         try {
             let { content, chatId } = req.body;
             const userId = req.user._id;
@@ -38,40 +59,6 @@ export default class MessageController {
 
             // send chat to ai server using fetch and recieve assistant response
             let assistantResponse;
-
-            // fetch("http://0.0.0.0:4000/ask", {
-            //     method: "POST",
-            //     headers: {
-            //         "Content-Type": "application/json",
-            //     },
-            //     body: JSON.stringify({ chat }),
-            // })
-            //     .then(async (response) => {
-            //         if (response.status === 200) {
-            //             assistantResponse = response.json().message;
-            //             console.log(response);
-            //             await dbClient.newMessage({
-            //                 chatId,
-            //                 content: assistantResponse,
-            //                 userId,
-            //                 role: "assistant",
-            //             });
-
-            //             res.status(200).json({
-            //                 content: assistantResponse,
-            //                 success: true,
-            //             });
-            //         } else {
-            //             console.log(response);
-            //             res.status(500).json({ error: "Server Error" });
-            //         }
-            //     })
-            //     .catch((error) => {
-            //         console.log(error);
-            //         res.status(500).json({ error: "Server Error" });
-            //     });
-
-            // send chat to ai server using axios and recieve assistant response
             try {
                 const response = await axios.post("http://0.0.0.0:4000/ask", {
                     chat,
@@ -86,6 +73,7 @@ export default class MessageController {
                 });
 
                 res.status(200).json({
+                    chatId,
                     content: assistantResponse,
                     success: true,
                 });
