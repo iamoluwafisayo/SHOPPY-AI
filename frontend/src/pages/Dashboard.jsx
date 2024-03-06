@@ -11,8 +11,8 @@ const Dashboard = () => {
           component="main"
           sx={{
             flexGrow: 1,
-            position: "fixed",
-            left: "300px",
+            position: "relative",
+            left: {md:"300px"},
             width: { xs: "100%", md: `calc(100% - ${sideBarWidth}px)` },
           }}
         >

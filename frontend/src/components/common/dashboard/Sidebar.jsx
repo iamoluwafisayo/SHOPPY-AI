@@ -10,10 +10,8 @@ import {
     List,
     Typography,
     ListItemButton,
-    IconButton,
 } from "@mui/material";
 import { FaRegEdit, FaSignOutAlt } from "react-icons/fa";
-import { customers, conversations } from "../../../data/customers";
 
 const handleLogout = () => {
     localStorage.removeItem("token");
@@ -28,6 +26,7 @@ const Sidebar = ({
     handleSelectChat,
     handleNewChat,
 }) => {
+    console.log(mobileOpen, sideBarWidth);
     const [chats, setChats] = React.useState([]);
     React.useEffect(() => {
         // fetch chats
@@ -106,7 +105,7 @@ const Sidebar = ({
                 sx={{
                     display: "flex",
                     flexDirection: "column",
-                    height: "calc(100vh - 660px)",
+                    height: {md: "calc(100vh - 660px)", xs: "auto",},
                 }}
             >
                 <Box p={1}>
@@ -149,8 +148,8 @@ const Sidebar = ({
                     "& .MuiDrawer-paper": {
                         boxSizing: "border-box",
                         width: sideBarWidth,
-                        backgroundColor: "sidebar.background",
-                        color: "sidebar.textColor",
+                        // backgroundColor: "sidebar.background",
+                        // color: "sidebar.textColor",
                     },
                 }}
             >

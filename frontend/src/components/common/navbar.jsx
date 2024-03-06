@@ -19,7 +19,6 @@ import { Link } from "react-router-dom";
 
 const pages = ["Home", "Services", "Pricing", "About Us", "Contact Us"];
 
-console.log(localStorage.getItem("token"));
 const ResponsiveNavBar = () => {
     const theme = useTheme();
     const [anchorElNav, setAnchorElNav] = React.useState(null);
