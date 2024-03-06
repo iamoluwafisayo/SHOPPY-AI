@@ -130,6 +130,10 @@ const Chat = ({ chatId }) => {
                 top: 0,
             }}
         >
+            <style>
+                @import
+                url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap')
+            </style>
             {/* Bar that shows logo icon by the left and name Shoppy AI  */}
             <Box>
                 <Box
@@ -146,13 +150,20 @@ const Chat = ({ chatId }) => {
                         borderColor: "divider",
                     }}
                 >
-                    <CardMedia
+                    {/* <CardMedia
                         component="img"
                         image="/images/shoppyAi.png"
                         alt="Shoppy AI"
                         sx={{ width: 40, height: 40, m: 2 }}
-                    />
-                    <Typography variant="h6">Shoppy AI</Typography>
+                    /> */}
+                    <Typography
+                        variant="h6"
+                        // space mono font
+                        fontFamily="Space Mono"
+                        fontWeight={600}
+                    >
+                        Shoppy AI
+                    </Typography>
                 </Box>
             </Box>
             <Box
@@ -205,6 +216,7 @@ const Chat = ({ chatId }) => {
                             alignItems: "center",
                             height: "100%",
                             flexFlow: "column nowrap",
+                            pb: 20,
                         }}
                     >
                         <CardMedia
