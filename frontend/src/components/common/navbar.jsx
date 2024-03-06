@@ -34,7 +34,7 @@ const ResponsiveNavBar = () => {
     return (
         <AppBar
             position="fixed"
-            sx={{ background: theme.palette.background.paper, pl: 9, pr: 9 }}
+            sx={{ background: theme.palette.background.paper, pl: 10, pr: 10 }}
         >
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
@@ -62,13 +62,6 @@ const ResponsiveNavBar = () => {
                                 borderColor: "divider",
                             }}
                         >
-                            <CardMedia
-                                component="img"
-                                image="/images/shoppyAi.png"
-                                alt="Shoppy AI"
-                                sx={{ width: 40, height: 40, mr: 1 }}
-                            />
-
                             <Typography
                                 variant="h6"
                                 component="div"
@@ -80,6 +73,13 @@ const ResponsiveNavBar = () => {
                             >
                                 Shoppy AI
                             </Typography>
+
+                            <CardMedia
+                                component="img"
+                                image="/images/shoppyAi.png"
+                                alt="Shoppy AI"
+                                sx={{ width: 40, height: 40, mr: 1 }}
+                            />
                         </Box>
                     </Box>
 

@@ -87,7 +87,7 @@ const Section2 = () => {
                                 color: "#2B2B2B",
                             }}
                         >
-                            Get the best offers
+                            Search multiple stores at the same time.
                         </Typography>
                         <Typography
                             variant="h4"
@@ -101,8 +101,9 @@ const Section2 = () => {
                                 textAlign: "left",
                             }}
                         >
-                            Compare similar products and get the best deals in
-                            record time.
+                            Remove the hassle of going from one store to another
+                            searching for the best products or the best deals
+                            get everything in one place.
                         </Typography>
                     </Grid>
                 </Grid>

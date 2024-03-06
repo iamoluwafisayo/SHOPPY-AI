@@ -150,12 +150,6 @@ const Chat = ({ chatId }) => {
                         borderColor: "divider",
                     }}
                 >
-                    {/* <CardMedia
-                        component="img"
-                        image="/images/shoppyAi.png"
-                        alt="Shoppy AI"
-                        sx={{ width: 40, height: 40, m: 2 }}
-                    /> */}
                     <Typography
                         variant="h6"
                         // space mono font
@@ -164,6 +158,12 @@ const Chat = ({ chatId }) => {
                     >
                         Shoppy AI
                     </Typography>
+                    <CardMedia
+                        component="img"
+                        image="/images/shoppyAi.png"
+                        alt="Shoppy AI"
+                        sx={{ width: 40, height: 40, mr: 1 }}
+                    />
                 </Box>
             </Box>
             <Box
