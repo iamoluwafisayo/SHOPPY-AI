@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
     Box,
     Button,
@@ -15,13 +15,9 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import Sidebar from "../components/common/dashboard/Sidebar";
-import { ChatReducer } from "../components/reducers/ChatReducer";
-import { ChatState } from "../components/reducers/states/initState";
-import ACTIONS from "../components/reducers/actions";
 import { FaPaperPlane } from "react-icons/fa";
 import Markdown from "react-markdown";
 import { BASE_URL } from "../App";
-import { set } from "react-hook-form";
 
 const chat = [
     {
@@ -40,12 +36,47 @@ const chat = [
     },
 ];
 
-const Chat = ({ chat, chatId }) => {
+const Chat = ({ chatId }) => {
+    const [chat, setChat] = React.useState([]);
     const [searching, setSearching] = React.useState(false);
+    const [fetchingChat, setFetchingChat] = React.useState(false);
     const [message, setMessage] = React.useState("");
+
+    // fetch chats
+    useEffect(() => {
+        setFetchingChat(true);
+        try {
+            const response = axios.get(
+                `${BASE_URL}user/chat/${chatId || "new"}`,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
+            );
+
+            response.then((res) => {
+                setFetchingChat(false);
+                console.log(res.data);
+                setChat(res.data.chat);
+            });
+        } catch {
+            console.log("Error fetching chat");
+            setFetchingChat(false);
+        }
+    }, [chatId]);
+
     const handleSendMessage = () => {
+        if (message.trim() === "") return;
+
         setSearching(true);
-        chat.push({ role: "user", content: message });
+        setChat((prevChat) => [
+            ...prevChat,
+            { role: "user", content: message },
+        ]);
         const messageToSend = message;
         setMessage("");
         try {
@@ -66,18 +97,26 @@ const Chat = ({ chat, chatId }) => {
             );
 
             response.then((res) => {
-                console.log(res);
                 setSearching(false);
-                chat.push({ role: "assistant", content: res.data.content });
+                setChat((prevChat) => [
+                    ...prevChat,
+                    { role: "assistant", content: res.data.content },
+                ]);
+                if (!chatId) {
+                    chatId = res.data.chatId;
+                }
             });
         } catch {
             console.log("Error sending message");
             setSearching(false);
-            chat.push({
-                role: "assistant",
-                content:
-                    "Sorry, I couldn't find any products for you try again later",
-            });
+            setChat((prevChat) => [
+                ...prevChat,
+                {
+                    role: "assistant",
+                    content:
+                        "Sorry, I encountered an error while searching, don't worry it's probably my fault. Try again later",
+                },
+            ]);
         }
     };
     return (
@@ -96,12 +135,13 @@ const Chat = ({ chat, chatId }) => {
                 <Box
                     sx={{
                         display: "flex",
-                        justifyContent: "center",
+                        justifyContent: "left",
                         alignItems: "center",
                         bgcolor: "#f2f2f2",
                         color: "black",
                         height: 65,
                         p: 2,
+                        pl: 5,
                         borderBottom: 1,
                         borderColor: "divider",
                     }}
@@ -110,7 +150,7 @@ const Chat = ({ chat, chatId }) => {
                         component="img"
                         image="/images/shoppyAi.png"
                         alt="Shoppy AI"
-                        sx={{ width: 40, height: 40, mr: 1 }}
+                        sx={{ width: 40, height: 40, m: 2 }}
                     />
                     <Typography variant="h6">Shoppy AI</Typography>
                 </Box>
@@ -122,40 +162,62 @@ const Chat = ({ chat, chatId }) => {
                     p: 2,
                 }}
             >
-                {chat.map((message, index) => (
-                    <Box
-                        key={index}
-                        sx={{
-                            display: "flex",
-                            justifyContent:
-                                message.role === "user"
-                                    ? "flex-end"
-                                    : "flex-start",
-                            mb: 2,
-                        }}
-                    >
+                {chat.length > 0 ? (
+                    chat.map((message, index) => (
                         <Box
+                            key={index}
                             sx={{
-                                p: 1,
-                                borderRadius: 1,
-                                bgcolor:
+                                display: "flex",
+                                justifyContent:
                                     message.role === "user"
-                                        ? "primary.main"
-                                        : "background.paper",
-                                color:
-                                    message.role === "user"
-                                        ? "white"
-                                        : "text.primary",
+                                        ? "flex-end"
+                                        : "flex-start",
+                                mb: 2,
                             }}
                         >
-                            {message.role === "user" ? (
-                                message.content
-                            ) : (
-                                <Markdown>{message.content}</Markdown>
-                            )}
+                            <Box
+                                sx={{
+                                    p: 1,
+                                    borderRadius: 1,
+                                    bgcolor:
+                                        message.role === "user"
+                                            ? "primary.main"
+                                            : "background.paper",
+                                    color:
+                                        message.role === "user"
+                                            ? "white"
+                                            : "text.primary",
+                                }}
+                            >
+                                {message.role === "user" ? (
+                                    message.content
+                                ) : (
+                                    <Markdown>{message.content}</Markdown>
+                                )}
+                            </Box>
                         </Box>
+                    ))
+                ) : (
+                    <Box
+                        sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            height: "100%",
+                            flexFlow: "column nowrap",
+                        }}
+                    >
+                        <CardMedia
+                            component="img"
+                            image="/images/shoppyAi.png"
+                            alt="Shoppy AI"
+                            sx={{ width: 200, height: 200, m: 2 }}
+                        />
+                        <Typography variant="h6">
+                            Describe what you're looking for...
+                        </Typography>
                     </Box>
-                ))}
+                )}
                 {searching && (
                     <Box
                         sx={{
@@ -194,7 +256,7 @@ const Chat = ({ chat, chatId }) => {
                             handleSendMessage();
                         }
                     }}
-                    placeholder="Describe what you're looking for..."
+                    placeholder="Type a description..."
                     sx={{
                         borderRadius: 1,
                         m: 1,
@@ -219,34 +281,26 @@ const Chat = ({ chat, chatId }) => {
 
 const sideBarWidth = 300;
 const Chats = () => {
-    const [state, dispatch] = React.useReducer(ChatReducer, ChatState);
+    const [chatId, setChatId] = React.useState("");
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
-    const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen);
+    const handleSelectChat = (chatId) => {
+        setChatId(chatId);
+        console.log(chatId);
     };
-    const handleSelectUser = (conversations) => {
-        dispatch({
-            type: ACTIONS.SET_CHAT_USER,
-            payload: { conversations: conversations, isReady: true },
-        });
-    };
-    const handleNewConversation = () => {
-        dispatch({
-            type: ACTIONS.SET_NEW_CONVERSATION,
-            payload: "",
-        });
+
+    const handleNewChat = () => {
+        setChatId("");
     };
     return (
         <Box component="section">
             <Sidebar
                 sideBarWidth={sideBarWidth}
                 mobileOpen={mobileOpen}
-                handleDrawerToggle={handleDrawerToggle}
-                onSelectUser={handleSelectUser}
-                newConversation={handleNewConversation}
+                handleSelectChat={handleSelectChat}
+                handleNewChat={handleNewChat}
             />
-            <Chat chat={chat} />
+            <Chat chatId={chatId} />
         </Box>
     );
 };

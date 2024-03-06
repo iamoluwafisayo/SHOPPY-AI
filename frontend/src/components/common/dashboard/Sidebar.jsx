@@ -25,10 +25,27 @@ const Sidebar = ({
     window,
     sideBarWidth,
     mobileOpen,
-    handleDrawerToggle,
-    onSelectUser,
-    newConversation,
+    handleSelectChat,
+    handleNewChat,
 }) => {
+    const [chats, setChats] = React.useState([]);
+    React.useEffect(() => {
+        // fetch chats
+        try {
+            const response = axios.get(`${BASE_URL}user/chats`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            });
+
+            response.then((res) => {
+                setChats(res.data);
+            });
+        } catch {
+            console.log("Error fetching chat");
+        }
+    }, []);
     const drawer = (
         <Box
             sx={{
@@ -41,7 +58,7 @@ const Sidebar = ({
                 <Button
                     fullWidth
                     role={undefined}
-                    onClick={newConversation}
+                    onClick={handleNewChat}
                     tabIndex={-1}
                     endIcon={<FaRegEdit />}
                 >
@@ -51,49 +68,37 @@ const Sidebar = ({
             <Divider />
             <Box sx={{ flex: 1, overflowY: "auto" }}>
                 <List disablePadding>
-                    {conversations.map(({ id, topic, discussions }) => (
-                        <ListItemButton
-                            sx={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "space-between",
-                            }}
-                            key={id}
-                            onClick={() =>
-                                onSelectUser({ id, topic, discussions })
-                            }
-                        >
-                            <Box
+                    {chats.length > 0 &&
+                        chats.map(({ _id, title }) => (
+                            <ListItemButton
                                 sx={{
                                     display: "flex",
                                     alignItems: "center",
-                                    gap: 1,
+                                    justifyContent: "space-between",
                                 }}
+                                key={_id}
+                                onClick={() => handleSelectChat(_id)}
                             >
                                 <Box
                                     sx={{
-                                        display: { xs: "none", sm: "block" },
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: 1,
                                     }}
                                 >
-                                    <Typography>{topic}</Typography>
+                                    <Box
+                                        sx={{
+                                            display: {
+                                                xs: "none",
+                                                sm: "block",
+                                            },
+                                        }}
+                                    >
+                                        <Typography>{title}</Typography>
+                                    </Box>
                                 </Box>
-                            </Box>
-                            <Box sx={{ display: { xs: "none", sm: "block" } }}>
-                                <IconButton
-                                    sx={{
-                                        width: "16px",
-                                        height: "16px",
-                                        backgroundColor: "#fc424a !important",
-                                        color: "#fff",
-                                        fontSize: "10px",
-                                        float: "right",
-                                    }}
-                                >
-                                    {Math.floor(Math.random() * 10)}
-                                </IconButton>
-                            </Box>
-                        </ListItemButton>
-                    ))}
+                            </ListItemButton>
+                        ))}
                 </List>
             </Box>
 
@@ -136,7 +141,6 @@ const Sidebar = ({
                 container={container}
                 variant="temporary"
                 open={mobileOpen}
-                onClose={handleDrawerToggle}
                 ModalProps={{
                     keepMounted: true, // Better open performance on mobile.
                 }}
