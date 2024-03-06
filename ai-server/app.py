@@ -29,7 +29,7 @@ def ask():
     chat.append({"role": "user", "content": get_prompt(products, message)})
     response = get_response(chat)
     if response is None:
-        return jsonify({"message": "An error occurred."})
+        return jsonify({"message": "Sorry, I encountered an error while searching, don't worry it's probably my fualt. Tray again later"})
     
     chat.append({"role": "assistant", "content": response})
 
