@@ -49,6 +49,6 @@ This project is licensed under the [MIT License](LICENSE).
 ---
 ## Authors
 
-- [Ugochukwu CHUKWUMA](https://github.com/johndoe) - Backend Developer
+- [Ugochukwu CHUKWUMA](https://github.com/0xUgochukwu) - Backend Developer
 - [David Oluwatosin Dorcas](https://github.com/iamoluwafisayo) - Frontend Developer
-- [Wachiou BOURAIMA](https://github.com/alexjohnson) - Backend Developer
+- [Wachiou BOURAIMA](https://github.com/wasscodeur) - Backend Developer
